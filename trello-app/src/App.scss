@@ -1,3 +1,96 @@
-.hello-world {
-    color: green;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+$board-bg-color: #0079bf;
+
+$column-header-height: 46px;
+$column-footer-height: 46px;
+
+
+body {
+    margin: 0;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.3em;
+}
+
+
+.trello-container {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 30px 40px 1fr;
+    background-color: $board-bg-color;
+
+    .navbar {
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 1.1em;
+
+        &.app {
+            background-color: white;
+            font-size: 1.5em;
+        }
+
+        &.board {
+            background-color: grey;
+        }
+    }
+    .board-column {
+        display: flex;
+        overflow-x: auto;
+    
+        .column {
+            display: 0 0 auto;
+            width: 300px;
+            height: calc(100% - 10px);
+            margin-left: 10px;
+
+            > * {
+                background-color: #ebecf0;
+                color: black;
+                padding: 0 8px;
+            }
+
+            header {
+                padding-left: 15px;
+                line-height: $column-header-height;
+                height: $column-header-height;
+                font-size: 16px;
+                font-weight: bold;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            footer {
+                padding-left: 10px; 
+                line-height: $column-footer-height;
+                height: $column-footer-height;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+
+            ul {
+                list-style-type: none;
+                margin: 0;
+                max-height: calc(100% - #{$column-header-height} - #{$column-footer-height});
+                overflow-y: auto;
+                 -webkit-appearance: none;
+                li {
+                    background-color: #ffff;
+                    padding: 10px;
+                    border-radius: 8px;
+                    &:not(:last-child) {
+                        margin-bottom: 8px;
+                    }
+                    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+                    
+                    img {
+                        max-width: 100%;
+                        width: 300px;
+                        height: 200px;
+                        margin: 0 auto;
+                        border-radius: px;
+                    }
+                }
+            }
+        }
+    }
 }
