@@ -1,9 +1,11 @@
 @import '../../../settings.scss';
 
 .board-content {
-    display: flex;
-    margin: 0 10px 10px;
+    height: $board-content-height;
+    // display: flex;
+    // margin: 0 10px 10px;
     overflow-x: auto;
+    overflow-y: hidden;
     &::-webkit-scrollbar {
         -webkit-apperance: none;
 
@@ -15,6 +17,12 @@
     &::-webkit-scrollbar-thumb {
         background-color: rgba(0, 0, 0, 0.24);
         border-right: 5px solid gray;
+    }
+
+    .column-drop-preview {
+        background-color: rgba(150, 150, 200, 0.1);
+        border: 1px dashed #abc;
+        margin: 5px 45px 5px 5px;
     }
 
 }

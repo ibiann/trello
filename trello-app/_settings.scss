@@ -4,7 +4,13 @@ $column-footer-height: 36px;
 $column-border-radius: 5px;
 $card-border-radius: 4px;
 
+
 $gap: 10px;
+
+//app bar + board bar + boardContent + 100vh
+$navbar-app-height: 4vh;
+$navbar-board-height: 6vh;
+$board-content-height: 88vh;
 
 //Colors
 $board-bg-color: rgb(132, 140, 207);

@@ -1,5 +1,11 @@
 @import '../../../settings.scss';
 
+$list-bg-color: #ebecf0;
+$column-height: calc(#{$board-content-height} - #{$gap * 2});
+
+
+
+
 .column {
     // &.hide * {
     //     background-color:red;
@@ -7,12 +13,10 @@
     // }
     // opacity: 1;
     // display: 0 0 auto;
+    flex: 0 0 auto;
     min-width: 300px;
     width: 300px;
-    height: calc(100% - 10px);
-    &:not(:first-child) {
-        margin-left: $gap;
-    }
+    height: $column-height;
     margin-left: $gap;
 
     > * {
@@ -21,7 +25,7 @@
         padding: 0 8px;
     }
 
-    header {
+    header.column-drag-handle{
         padding-left: 15px;
         line-height: $column-header-height;
         height: $column-header-height;
@@ -29,7 +33,7 @@
         font-weight: bold;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-
+        cursor: pointer;
 
     }
     footer {
@@ -40,10 +44,10 @@
         border-bottom-right-radius: 5px;
     }
 
-    ul {
-        list-style-type: none;
+    .card-list {
+        
         margin: 0;
-        max-height: calc(100% - #{$column-header-height} - #{$column-footer-height});
+        max-height: calc($column-height - #{$column-header-height} - #{$column-footer-height});
         
         overflow-y: auto;
         &::-webkit-scrollbar {
@@ -51,12 +55,28 @@
 
         }
         &::-webkit-scrollbar:vertical {
-            width: 9px;
+            width: 11px;
         }
 
         &::-webkit-scrollbar-thumb {
             background-color: rgba(0, 0, 0, 0.24);
             border-right: 5px solid gray;
+        }
+
+        .card-ghost {
+        transition: transform 0.18s ease;
+        transform: rotateZ(5deg)
+        }
+        
+        .card-ghost-drop{
+        transition: transform 0.18s ease-in-out;
+        transform: rotateZ(0deg)
+        }
+
+        .card-drop-preview {
+            background-color: rgba(150, 150, 200, 0.1);
+            border: 1px dashed rgb(0, 122, 243);
+            margin: 5px;
         }
     }
 }

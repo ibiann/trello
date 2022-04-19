@@ -2,11 +2,22 @@ import React from 'react'
 
 import './Card.scss'
 
-function Card() {
+function Card(props) {
+  const { card } = props
+
+
   return (
-    <li className="card-items">
-            <img src="https://picsum.photos/200/200" alt='trung-img'/>
-            </li>
+    <div className="card-items">
+    {card.cover &&  
+    <img 
+    src={card.cover} 
+    className="card-cover" 
+    alt='trung-img'
+    onMouseDown={e => e.preventDefault()}
+    />
+    }
+    {card.title}
+    </div>
   )
 }
 
