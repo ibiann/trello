@@ -2,7 +2,7 @@
 
 .board-content {
     height: $board-content-height;
-    // display: flex;
+    display: flex;
     // margin: 0 10px 10px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -25,4 +25,21 @@
         margin: 5px 45px 5px 5px;
     }
 
+    .add-new-column {
+        width: 250px;
+        height: 32px;
+        list-style: 32px;
+        padding: 6px 0 4px 15px;
+        margin-left: $gap;
+        font-size: 15px;
+        color: white;
+        background-color: hsla(0, 0%, 100%, 0.24);
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: hsla(0, 0%, 100%, 0.34);
+        }
+        
+    }
 }

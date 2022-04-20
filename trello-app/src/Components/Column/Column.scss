@@ -42,6 +42,15 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
         height: $column-footer-height;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
+        color: green;
+
+        .footer-action {
+            margin-left: $gap;
+            cursor: pointer;
+            &:hover {
+                color: grey;
+            }
+        }
     }
 
     .card-list {

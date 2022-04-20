@@ -1,4 +1,4 @@
-import { UnorderedListOutlined } from '@ant-design/icons'
+import { PlusCircleOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import React from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 
@@ -9,12 +9,10 @@ import { mapOrder } from '../../utils/sort'
 
 function Column(props) {
   // const [hide,setHide] = React.useState(false)
-  const { column }  = props
+  const { column, onCardDrop }  = props
   const cards = mapOrder(column.cards, column.cardOrder, 'id')
 
-  const onCardDrop = (dropResult) => {
-    console.log(dropResult)
-}
+
 
   return (
         // <div className={`column ${hide ? 'hide' : ''}`} draggable={true} onDrop={() => setHide(false)} onDrag={() => setHide(true)} >
@@ -28,7 +26,7 @@ function Column(props) {
           <Container
               orientation="vertical" //default
               groupName="my-columns"
-              onDrop={onCardDrop}
+              onDrop={dropResult => onCardDrop(column.id, dropResult)}
               getChildPayload={index => cards[index]}
               dragClass="card-ghost"
               dropClass="card-ghost-drop"
@@ -46,7 +44,13 @@ function Column(props) {
               ))}
             </Container>
           </div>
-          <footer>Add another card</footer>
+          <footer>
+          
+            <div className="footer-action">
+          <PlusCircleOutlined className="icon" /> <span>Add another card</span>
+          </div> 
+        
+            </footer>
           </div>
   )
 }

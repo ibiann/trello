@@ -10,6 +10,7 @@
     "antd": "^4.19.5",
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslist": "^1.0.0-beta.1",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",
     "node-sass": "^7.0.1",
     "react": "^18.0.0",
