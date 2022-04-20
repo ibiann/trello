@@ -1,8 +1,6 @@
 @import '../../../settings.scss';
 
-$navbar-app-bg-color: rgb(137, 196, 244);
-
-.nav-app {
+.navbar-app {
     background-color: $navbar-app-bg-color;
     height: $navbar-app-height;
     font-size: 1.5em;

@@ -3,7 +3,7 @@
 $card-border-radius: 4px;
 
 .card-items {
-    background-color: #ffff;
+    background-color: $items-bg-color;
     padding: $gap;
     border-radius: 5px;
     &:not(:last-child) {

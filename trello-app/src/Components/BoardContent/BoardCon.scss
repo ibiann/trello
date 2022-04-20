@@ -16,12 +16,12 @@
 
     &::-webkit-scrollbar-thumb {
         background-color: rgba(0, 0, 0, 0.24);
-        border-right: 5px solid gray;
+        border-right: 5px solid $color;
     }
 
     .column-drop-preview {
         background-color: rgba(150, 150, 200, 0.1);
-        border: 1px dashed #abc;
+        border: 1px dashed rgb(108, 122, 137);
         margin: 5px 45px 5px 5px;
     }
 
@@ -32,10 +32,10 @@
         padding: 6px 0 4px 15px;
         margin-left: $gap;
         font-size: 15px;
-        color: white;
+        color: $color-2;
         background-color: hsla(0, 0%, 100%, 0.24);
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: $column-border-radius;
 
         &:hover {
             background-color: hsla(0, 0%, 100%, 0.34);

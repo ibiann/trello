@@ -12,7 +12,6 @@ function App() {
       <AppBar />
       <BoardBar />
       <BoardCon />
-      
     </div>
   );
 

@@ -21,7 +21,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
 
     > * {
         background-color: #ebecf0;
-        color: black;
+        color: rgb(46, 49, 49);;
         padding: 0 8px;
     }
 
@@ -42,13 +42,13 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
         height: $column-footer-height;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-        color: green;
+        color: rgb(128, 128, 128);
 
         .footer-action {
             margin-left: $gap;
             cursor: pointer;
             &:hover {
-                color: grey;
+                color: rgb(125, 254, 227);;
             }
         }
     }
@@ -84,7 +84,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
 
         .card-drop-preview {
             background-color: rgba(150, 150, 200, 0.1);
-            border: 1px dashed rgb(0, 122, 243);
+            border: 1px dashed rgb(189, 195, 199);;
             margin: 5px;
         }
     }
