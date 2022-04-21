@@ -35,11 +35,17 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
         border-top-right-radius: 5px;
         cursor: pointer;
 
+        .column-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
     }
     footer {
-        padding-left: 10px; 
-        line-height: $column-footer-height;
-        height: $column-footer-height;
+        padding-left: 10px;
+        line-height: 45px;
+        height: 45px;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         color: rgb(128, 128, 128);
