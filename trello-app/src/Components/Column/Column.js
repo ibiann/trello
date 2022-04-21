@@ -9,10 +9,12 @@ import { mapOrder } from '../../utils/sort'
 
 function Column(props) {
   // const [hide,setHide] = React.useState(false)
-  const { column, onCardDrop }  = props
+  const { column }  = props
   const cards = mapOrder(column.cards, column.cardOrder, 'id')
 
-
+  const onCardDrop = (dropResult) => {
+    console.log(dropResult);
+  }
 
   return (
         // <div className={`column ${hide ? 'hide' : ''}`} draggable={true} onDrop={() => setHide(false)} onDrag={() => setHide(true)} >
@@ -20,7 +22,7 @@ function Column(props) {
         <header className="column-drag-handle">
               {/* <span>Brainstorm</span> */}
               {column.title}
-              <UnorderedListOutlined />
+              <UnorderedListOutlined className="column-menu"/>
         </header>
           <div className="card-list">
           <Container
@@ -47,7 +49,7 @@ function Column(props) {
           <footer>
           
             <div className="footer-action">
-          <PlusCircleOutlined className="icon" /> <span>Add another card</span>
+          <PlusCircleOutlined className="icon" /> Add another card
           </div> 
         
             </footer>

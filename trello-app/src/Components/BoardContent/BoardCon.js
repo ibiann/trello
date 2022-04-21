@@ -1,6 +1,7 @@
 // import { Col } from 'antd'
 import React, { useState, useEffect } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
+import { Container as TrelloApp, Row, Col, Form, Button} from 'react-bootstrap'
 import { isEmpty } from 'lodash'
 
 import './BoardCon.scss'
@@ -13,6 +14,8 @@ import { applyDrag } from '../../utils/dragDrop'
 
 import { initialData } from '../../actions/initialData'
 import { PlusOutlined } from '@ant-design/icons'
+
+
 
 function BoardCon() {  
     const [board, setBoard] = useState({})
@@ -87,9 +90,26 @@ function BoardCon() {
          </Draggable>
         ))}
         </Container>
-        <div className="add-new-column">
-        <PlusOutlined className="icon" /> <span>Add another column</span>
-        </div>
+
+        <TrelloApp className="TrelloApp-trello-clone-container">
+        <Row>
+          <Col className="add-new-column">
+          <PlusOutlined className="icon" /> Add another column
+          </Col>
+        </Row>
+
+          <Row>
+            <Col className="enter-new-column">
+            <Form.Control 
+            size="sm" 
+            type="text"
+            placeholder="Small text"
+            className="input-enter-new-column" />
+            <Button className="button" variant="success" size="sm">Add Column</Button>
+            </Col>
+          </Row>
+
+      </TrelloApp>
     </div> 
     )
 }
