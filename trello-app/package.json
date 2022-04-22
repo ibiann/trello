@@ -2,6 +2,12 @@
   "name": "trello-app",
   "version": "0.1.0",
   "private": true,
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -47,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "prettier": "2.6.2",
     "source-map-loader": "^3.0.1"
   }
 }

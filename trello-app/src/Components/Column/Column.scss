@@ -3,95 +3,91 @@
 $list-bg-color: #ebecf0;
 $column-height: calc(#{$board-content-height} - #{$gap * 2});
 
-
-
-
 .column {
-    // &.hide * {
-    //     background-color:red;
-        
-    // }
-    // opacity: 1;
-    // display: 0 0 auto;
-    flex: 0 0 auto;
-    min-width: 300px;
-    width: 300px;
-    height: $column-height;
-    margin-left: $gap;
+  // &.hide * {
+  //     background-color:red;
 
-    > * {
-        background-color: #ebecf0;
-        color: rgb(46, 49, 49);;
-        padding: 0 8px;
+  // }
+  // opacity: 1;
+  // display: 0 0 auto;
+  flex: 0 0 auto;
+  min-width: 300px;
+  width: 300px;
+  height: $column-height;
+  margin-left: $gap;
+
+  > * {
+    background-color: #ebecf0;
+    color: rgb(46, 49, 49);
+    padding: 0 8px;
+  }
+
+  header.column-drag-handle {
+    padding-left: 15px;
+    line-height: $column-header-height;
+    height: $column-header-height;
+    font-size: 16px;
+    font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+
+    .column-menu {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+  }
+  footer {
+    padding-left: 10px;
+    line-height: 45px;
+    height: 45px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: rgb(128, 128, 128);
+
+    .footer-action {
+      margin-left: $gap;
+      cursor: pointer;
+      &:hover {
+        color: rgb(125, 254, 227);
+      }
+    }
+  }
+
+  .card-list {
+    margin: 0;
+    max-height: calc(
+      $column-height - #{$column-header-height} - #{$column-footer-height}
+    );
+
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      -webkit-apperance: none;
+    }
+    &::-webkit-scrollbar:vertical {
+      width: 11px;
     }
 
-    header.column-drag-handle{
-        padding-left: 15px;
-        line-height: $column-header-height;
-        height: $column-header-height;
-        font-size: 16px;
-        font-weight: bold;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        cursor: pointer;
-
-        .column-menu {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-    }
-    footer {
-        padding-left: 10px;
-        line-height: 45px;
-        height: 45px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        color: rgb(128, 128, 128);
-
-        .footer-action {
-            margin-left: $gap;
-            cursor: pointer;
-            &:hover {
-                color: rgb(125, 254, 227);;
-            }
-        }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.24);
+      border-right: 5px solid gray;
     }
 
-    .card-list {
-        
-        margin: 0;
-        max-height: calc($column-height - #{$column-header-height} - #{$column-footer-height});
-        
-        overflow-y: auto;
-        &::-webkit-scrollbar {
-            -webkit-apperance: none;
-
-        }
-        &::-webkit-scrollbar:vertical {
-            width: 11px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.24);
-            border-right: 5px solid gray;
-        }
-
-        .card-ghost {
-        transition: transform 0.18s ease;
-        transform: rotateZ(5deg)
-        }
-        
-        .card-ghost-drop{
-        transition: transform 0.18s ease-in-out;
-        transform: rotateZ(0deg)
-        }
-
-        .card-drop-preview {
-            background-color: rgba(150, 150, 200, 0.1);
-            border: 1px dashed rgb(189, 195, 199);;
-            margin: 5px;
-        }
+    .card-ghost {
+      transition: transform 0.18s ease;
+      transform: rotateZ(5deg);
     }
+
+    .card-ghost-drop {
+      transition: transform 0.18s ease-in-out;
+      transform: rotateZ(0deg);
+    }
+
+    .card-drop-preview {
+      background-color: rgba(150, 150, 200, 0.1);
+      border: 1px dashed rgb(189, 195, 199);
+      margin: 5px;
+    }
+  }
 }

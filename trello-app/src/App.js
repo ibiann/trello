@@ -5,7 +5,6 @@ import AppBar from './Components/AppBar/AppBar'
 import BoardCon from './Components/BoardContent/BoardCon'
 // import { Button } from 'antd'
 
-
 function App() {
   return (
     <div className="trello-container">
@@ -13,11 +12,7 @@ function App() {
       <BoardBar />
       <BoardCon />
     </div>
-  );
-
+  )
 }
 
-
-
-
-export default App;
+export default App

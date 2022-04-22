@@ -1,50 +1,47 @@
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 @import '../settings.scss';
 
-
 body {
-    margin: 0;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.3em;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.3em;
 }
-
 
 .trello-container {
-    height: 100vh;
-    overflow: hidden;
-    background-color: $board-bg-color;
-    color: rgb(0, 0, 0);
+  height: 100vh;
+  overflow: hidden;
+  background-color: $board-bg-color;
+  color: rgb(0, 0, 0);
 
-    .icon {
-        font-size: 20px;
-        margin-left: 3px;
-    
-    }
+  .icon {
+    font-size: 20px;
+    margin-left: 3px;
+  }
 
-    .TrelloApp-trello-clone-container {
-        margin: 0 12px;
-        padding: 0;
-    }
+  .TrelloApp-trello-clone-container {
+    margin: 0 12px;
+    padding: 0;
+  }
 
-    textarea:focus, 
-    textarea.form-control:focus, 
-    input.form-control:focus, 
-    input[type=text]:focus, 
-    input[type=password]:focus, 
-    input[type=email]:focus, 
-    input[type=number]:focus, 
-    [type=text].form-control:focus, 
-    [type=password].form-control:focus, 
-    [type=email].form-control:focus, 
-    [type=tel].form-control:focus, 
-    [contenteditable].form-control:focus {
-        box-shadow: none;
-    }
+  textarea:focus,
+  textarea.form-control:focus,
+  input.form-control:focus,
+  input[type='text']:focus,
+  input[type='password']:focus,
+  input[type='email']:focus,
+  input[type='number']:focus,
+  [type='text'].form-control:focus,
+  [type='password'].form-control:focus,
+  [type='email'].form-control:focus,
+  [type='tel'].form-control:focus,
+  [contenteditable].form-control:focus {
+    box-shadow: none;
+  }
 
-    .btn:focus, .btn:active {
-        outline: none;
-        box-shadow: none;
-    }
+  .btn:focus,
+  .btn:active {
+    outline: none;
+    box-shadow: none;
+  }
 }
-
