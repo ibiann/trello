@@ -1,5 +1,5 @@
 // import { Col } from 'antd'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { Container as TrelloApp, Row, Col, Form, Button } from 'react-bootstrap'
 import { isEmpty } from 'lodash'
@@ -18,6 +18,12 @@ function BoardCon() {
 
   const newColumnInputRef = useRef(null)
 
+  const [newColumnTitle, setNewColumnTitle] = useState('')
+
+  const onNewTitleChange = useCallback(() => {
+    setNewColumnTitle(e.target.value)
+  }, [])
+
   useEffect(() => {
     const boardFromDB = initialData.boards.find(
       (board) => board.id === 'board-1'
@@ -30,6 +36,13 @@ function BoardCon() {
       console.log('return')
     }
   }, [])
+
+  useEffect(() => {
+    if (newColumnInputRef && newColumnInputRef.current) {
+      newColumnInputRef.current.focus()
+    }
+  }, [openNewColumn])
+
   if (isEmpty(board)) {
     return (
       <div className="not-found" style={{ padding: '10px' }}>
@@ -64,6 +77,32 @@ function BoardCon() {
 
   const toggleOpenNewForm = () => setOpenNewColumn(!openNewColumn)
 
+  const addNewColumn = () => {
+    if (!newColumnTitle) {
+      newColumnInputRef.current.focus()
+      return
+    }
+    const newColumnAdd = {
+      id: Math.random().toString(36).substr(3,5),
+      boardID: board.did,
+      title: newColumnTitle,
+      cardOrder: [],
+      cards: []
+    }
+
+    let NewColumns = [...Column]
+    NewColumns.push(newColumnAdd)
+
+    let newBoard = { ...board }
+    newBoard.columnOrder = NewColumns.map((a) => a.id)
+    newBoard.columns = NewColumns
+    console.log(newBoard)
+
+    setColumns(newColumns)
+    setBoard(newBoard)
+
+    console.log(newColumnTitle)
+  }
 
   return (
     <div className="board-content">
@@ -102,8 +141,15 @@ function BoardCon() {
                 placeholder="Small text"
                 className="input-enter-new-column"
                 ref={newColumnInputRef}
+                value={newColumnTitle}
+                onChange={onNewTitleChange}
               />
-              <Button className="button" variant="success" size="sm">
+              <Button
+                className="button"
+                variant="success"
+                size="sm"
+                onClick={addNewColumn}
+              >
                 Add Column
               </Button>
               <span className="cancel-new-column">
