@@ -1,27 +1,49 @@
 import { PlusCircleOutlined, UnorderedListOutlined } from '@ant-design/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 
 import './Column.scss'
 
 import Card from '../Card/Card'
 import { mapOrder } from '../../utils/sort'
+import Confirm from '../Dialogue/Confirm'
+import { Dropdown } from 'react-bootstrap'
 
 function Column(props) {
   // const [hide,setHide] = React.useState(false)
   const { column, onCardDrop } = props
   const cards = mapOrder(column.cards, column.cardOrder, 'id')
+  const [showConfirmBox, setShowConfirmBox] = useState(false)
+  const toggleShowConfirmBox = () => setShowConfirmBox(!showConfirmBox)
 
-  // const onCardDrop = (dropResult) => {
-  //   console.log(dropResult)
-  // }
+  const ConfirmModal = (type) => {
+    console.log(type)
+  }
 
   return (
     // <div className={`column ${hide ? 'hide' : ''}`} draggable={true} onDrop={() => setHide(false)} onDrag={() => setHide(true)} >
     <div className="column">
       <header className="column-drag-handle">
-        {column.title}
-        <UnorderedListOutlined className="column-menu" />
+        <div className="column-title">{column.title}</div>
+        <div className="column-dropdown">
+          <Dropdown>
+            <Dropdown.Toggle
+              id="dropdown-basic"
+              size="sm"
+              className="dropdown-btn"
+            >
+              <UnorderedListOutlined className="menu-icon" />
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item>Action</Dropdown.Item>
+              <Dropdown.Item onClick={toggleShowConfirmBox}>
+                Another action
+              </Dropdown.Item>
+              <Dropdown.Item>Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </header>
       <div className="card-list">
         <Container
@@ -50,6 +72,12 @@ function Column(props) {
           <PlusCircleOutlined className="icon" /> Add another card
         </div>
       </footer>
+      <Confirm
+        show={showConfirmBox}
+        onAction={ConfirmModal}
+        title="remove column"
+        content={`Remove ${column.title}? Remove soon`}
+      />
     </div>
   )
 }
