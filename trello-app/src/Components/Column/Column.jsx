@@ -9,12 +9,12 @@ import { mapOrder } from '../../utils/sort'
 
 function Column(props) {
   // const [hide,setHide] = React.useState(false)
-  const { column } = props
+  const { column, onCardDrop } = props
   const cards = mapOrder(column.cards, column.cardOrder, 'id')
 
-  const onCardDrop = (dropResult) => {
-    console.log(dropResult)
-  }
+  // const onCardDrop = (dropResult) => {
+  //   console.log(dropResult)
+  // }
 
   return (
     // <div className={`column ${hide ? 'hide' : ''}`} draggable={true} onDrop={() => setHide(false)} onDrag={() => setHide(true)} >

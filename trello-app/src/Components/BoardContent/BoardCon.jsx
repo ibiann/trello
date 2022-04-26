@@ -19,10 +19,10 @@ function BoardCon() {
   const newColumnInputRef = useRef(null)
 
   const [newColumnTitle, setNewColumnTitle] = useState('')
-
-  const onNewTitleChange = useCallback(() => {
-    setNewColumnTitle(e.target.value)
-  }, [])
+  const onNewTitleChange = useCallback(
+    (e) => setNewColumnTitle(e.target.value),
+    []
+  )
 
   useEffect(() => {
     const boardFromDB = initialData.boards.find(
@@ -40,6 +40,7 @@ function BoardCon() {
   useEffect(() => {
     if (newColumnInputRef && newColumnInputRef.current) {
       newColumnInputRef.current.focus()
+      newColumnInputRef.current.select()
     }
   }, [openNewColumn])
 
@@ -56,12 +57,13 @@ function BoardCon() {
     newColumns = applyDrag(newColumns, dropResult)
 
     let newBoard = { ...board }
-    newBoard.columnOrder = newColumns.map((a) => a.id)
+    newBoard.columnOrder = newColumns.map((c) => c.id)
     newBoard.columns = newColumns
     console.log(newBoard)
 
     setColumns(newColumns)
     setBoard(newBoard)
+    setNewColumnTitle('')
   }
   const onCardDrop = (columnId, dropResult) => {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
@@ -75,7 +77,7 @@ function BoardCon() {
     }
   }
 
-  const toggleOpenNewForm = () => setOpenNewColumn(!openNewColumn)
+  const toggleOpenNewColumn = () => setOpenNewColumn(!openNewColumn)
 
   const addNewColumn = () => {
     if (!newColumnTitle) {
@@ -83,25 +85,23 @@ function BoardCon() {
       return
     }
     const newColumnAdd = {
-      id: Math.random().toString(36).substr(3,5),
-      boardID: board.did,
-      title: newColumnTitle,
+      id: Math.random().toString(36).substr(3, 5),
+      boardID: board.id,
+      title: newColumnTitle.trim(),
       cardOrder: [],
-      cards: []
+      cards: [],
     }
 
-    let NewColumns = [...Column]
-    NewColumns.push(newColumnAdd)
+    let newColumns = [...columns]
+    newColumns.push(newColumnAdd)
 
     let newBoard = { ...board }
-    newBoard.columnOrder = NewColumns.map((a) => a.id)
-    newBoard.columns = NewColumns
+    newBoard.columnOrder = newColumns.map((c) => c.id)
+    newBoard.columns = newColumns
     console.log(newBoard)
 
     setColumns(newColumns)
     setBoard(newBoard)
-
-    console.log(newColumnTitle)
   }
 
   return (
@@ -126,7 +126,7 @@ function BoardCon() {
       <TrelloApp className="TrelloApp-trello-clone-container">
         {!openNewColumn && (
           <Row>
-            <Col className="add-new-column" onClick={toggleOpenNewForm}>
+            <Col className="add-new-column" onClick={toggleOpenNewColumn}>
               <PlusOutlined className="icon" /> Add another column
             </Col>
           </Row>
@@ -143,6 +143,7 @@ function BoardCon() {
                 ref={newColumnInputRef}
                 value={newColumnTitle}
                 onChange={onNewTitleChange}
+                onKeyDown={(e) => e.key === 'Enter' && addNewColumn()}
               />
               <Button
                 className="button"
@@ -152,7 +153,7 @@ function BoardCon() {
               >
                 Add Column
               </Button>
-              <span className="cancel-new-column">
+              <span className="cancel-new-column" onClick={toggleOpenNewColumn}>
                 <CloseOutlined />
               </span>
             </Col>
