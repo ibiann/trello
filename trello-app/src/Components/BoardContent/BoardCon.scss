@@ -56,20 +56,6 @@
 
     input.input-enter-new-column {
       margin: 5px 0;
-      &:focus {
-        border-color: $border-color;
-      }
-    }
-  }
-  span.cancel-new-column {
-    margin-left: $gap;
-    cursor: pointer;
-  }
-  .cancel-new-column {
-    font-size: 18px;
-    color: #6b778c;
-    &:hover {
-      color: rgba(242, 38, 19, 1);
     }
   }
 }

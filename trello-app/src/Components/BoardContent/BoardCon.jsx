@@ -1,5 +1,5 @@
 // import { Col } from 'antd'
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { Container as TrelloApp, Row, Col, Form, Button } from 'react-bootstrap'
 import { isEmpty } from 'lodash'
@@ -15,14 +15,12 @@ function BoardCon() {
   const [board, setBoard] = useState({})
   const [columns, setColumns] = useState([])
   const [openNewColumn, setOpenNewColumn] = useState(false)
+  const toggleOpenNewColumn = () => setOpenNewColumn(!openNewColumn)
 
   const newColumnInputRef = useRef(null)
 
   const [newColumnTitle, setNewColumnTitle] = useState('')
-  const onNewTitleChange = useCallback(
-    (e) => setNewColumnTitle(e.target.value),
-    []
-  )
+  const onNewTitleChange = (e) => setNewColumnTitle(e.target.value)
 
   useEffect(() => {
     const boardFromDB = initialData.boards.find(
@@ -77,8 +75,6 @@ function BoardCon() {
     }
   }
 
-  const toggleOpenNewColumn = () => setOpenNewColumn(!openNewColumn)
-
   const addNewColumn = () => {
     if (!newColumnTitle) {
       newColumnInputRef.current.focus()
@@ -127,8 +123,9 @@ function BoardCon() {
 
     setColumns(newColumns)
     setBoard(newBoard)
-    console.log(columnIndexUpdate)
+    // console.log(columnIndexUpdate)
   }
+
   return (
     <div className="board-content">
       <Container
@@ -182,7 +179,7 @@ function BoardCon() {
               >
                 Add Column
               </Button>
-              <span className="cancel-new-column" onClick={toggleOpenNewColumn}>
+              <span className="cancel-icon" onClick={toggleOpenNewColumn}>
                 <CloseOutlined />
               </span>
             </Col>

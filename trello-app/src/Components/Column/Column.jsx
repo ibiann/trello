@@ -1,6 +1,11 @@
-import { PlusCircleOutlined, UnorderedListOutlined } from '@ant-design/icons'
-import React, { useCallback, useEffect, useState } from 'react'
+import {
+  CloseOutlined,
+  PlusCircleOutlined,
+  UnorderedListOutlined,
+} from '@ant-design/icons'
+import React, { useEffect, useRef, useState } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
+import { cloneDeep } from 'lodash'
 
 import './Column.scss'
 
@@ -8,7 +13,7 @@ import Card from '../Card/Card'
 import { mapOrder } from '../../utils/sort'
 import { MODAL_CONFIRM } from '../../utils/const'
 import Confirm from '../Dialogue/Confirm'
-import { Dropdown, Form } from 'react-bootstrap'
+import { Dropdown, Form, Button } from 'react-bootstrap'
 import { saveContentColumnTitle, selectAllText } from '../../utils/contentEdit'
 
 function Column(props) {
@@ -18,9 +23,16 @@ function Column(props) {
   const [showConfirmBox, setShowConfirmBox] = useState(false)
   const toggleShowConfirmBox = () => setShowConfirmBox(!showConfirmBox)
   const [columnTitle, setColumnTitle] = useState('') //string rong
-  const handleColumnTitleChange = useCallback((e) => {
+  const handleColumnTitleChange = (e) => {
     setColumnTitle(e.target.value, [])
-  })
+  }
+  const [openNewCard, setOpenNewCard] = useState(false)
+  const toggleOpenNewCard = () => setOpenNewCard(!openNewCard)
+
+  const newCardTextplaceRef = useRef(null)
+
+  const [newCardTitle, setNewCardTitle] = useState('')
+  const onNewCardTitleChange = (e) => setNewCardTitle(e.target.value)
 
   useEffect(() => {
     setColumnTitle(column.title)
@@ -28,11 +40,18 @@ function Column(props) {
   // column thay doi title thi effect nay se chay
   // 0 se chay vo hanF
 
+  useEffect(() => {
+    if (newCardTextplaceRef && newCardTextplaceRef.current) {
+      newCardTextplaceRef.current.focus()
+      newCardTextplaceRef.current.select()
+    }
+  }, [openNewCard])
+
   const ConfirmModal = (type) => {
     if (type === MODAL_CONFIRM) {
       const newColumn = {
         ...column,
-        _destroy: true
+        _destroy: true,
       }
       onUpdateColumn(newColumn)
     }
@@ -42,9 +61,33 @@ function Column(props) {
   const handleColumnTitleBlur = () => {
     const newColumn = {
       ...column,
-      _destroy: true
+      title: columnTitle,
     }
     onUpdateColumn(newColumn)
+  }
+
+  const addNewCard = () => {
+    if (!newCardTitle) {
+      newCardTextplaceRef.current.focus()
+      return
+    }
+
+    const newCardAdd = {
+      id: Math.random().toString(36).substr(2, 5),
+      boardID: column.boardId,
+      columnId: column.id,
+      title: newCardTitle.trim(),
+      cover: null
+    }
+    //console.log(column)
+    let newColum = cloneDeep(column)
+    newColum.cards.push(newCardAdd)
+    newColum.cardOrder.push(newCardAdd.id)
+
+    //console.log(newColum)
+    onUpdateColumn(newColum)
+    setNewCardTitle('')
+    toggleOpenNewCard()
   }
 
   return (
@@ -107,11 +150,43 @@ function Column(props) {
             </Draggable>
           ))}
         </Container>
+        {openNewCard && (
+          <div className="add-new-card">
+            <Form.Control
+              size="sm"
+              as="textarea"
+              rows="3"
+              placeholder="Enter a title for this card..."
+              className="input-enter-new-card"
+              ref={newCardTextplaceRef}
+              value={newCardTitle}
+              onChange={onNewCardTitleChange}
+              onKeyDown={(e) => e.key === 'Enter' && addNewCard()}
+            />
+          </div>
+        )}
       </div>
       <footer>
-        <div className="footer-action">
-          <PlusCircleOutlined className="icon" /> Add another card
-        </div>
+        {openNewCard && (
+          <div className="add-new-card-actions">
+            <Button
+              className="button"
+              variant="success"
+              size="sm"
+              onClick={addNewCard}
+            >
+              Add Cards
+            </Button>
+            <span className="cancel-icon" onClick={toggleOpenNewCard}>
+              <CloseOutlined />
+            </span>
+          </div>
+        )}
+        {!openNewCard && (
+          <div className="footer-action" onClick={toggleOpenNewCard}>
+            <PlusCircleOutlined className="icon" /> Add another card
+          </div>
+        )}
       </footer>
       <Confirm
         show={showConfirmBox}
