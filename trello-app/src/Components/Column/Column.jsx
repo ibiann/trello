@@ -6,6 +6,7 @@ import './Column.scss'
 
 import Card from '../Card/Card'
 import { mapOrder } from '../../utils/sort'
+import { MODAL_CONFIRM } from '../../utils/const'
 import Confirm from '../Dialogue/Confirm'
 import { Dropdown } from 'react-bootstrap'
 
@@ -17,7 +18,10 @@ function Column(props) {
   const toggleShowConfirmBox = () => setShowConfirmBox(!showConfirmBox)
 
   const ConfirmModal = (type) => {
-    console.log(type)
+    if (type === MODAL_CONFIRM) {
+      // const
+    }
+    toggleShowConfirmBox()
   }
 
   return (
