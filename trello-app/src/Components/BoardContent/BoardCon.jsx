@@ -1,84 +1,90 @@
 // import { Col } from 'antd'
-import React, { useState, useEffect, useRef } from 'react'
-import { Container, Draggable } from 'react-smooth-dnd'
-import { Container as TrelloApp, Row, Col, Form, Button } from 'react-bootstrap'
-import { isEmpty } from 'lodash'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons'
+import React, { useState, useEffect, useRef } from "react";
+import { Container, Draggable } from "react-smooth-dnd";
+import {
+  Container as TrelloApp,
+  Row,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
+import { isEmpty } from "lodash";
+import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
 
-import Column from '../Column/Column'
-import { mapOrder } from '../../utils/sort'
-import { applyDrag } from '../../utils/dragDrop'
-import { initialData } from '../../actions/initialData'
-import './BoardCon.scss'
+import Column from "../Column/Column";
+import { mapOrder } from "../../utils/sort";
+import { applyDrag } from "../../utils/dragDrop";
+import { initialData } from "../../actions/initialData";
+import "./BoardCon.scss";
 
 function BoardCon() {
-  const [board, setBoard] = useState({})
-  const [columns, setColumns] = useState([])
-  const [openNewColumn, setOpenNewColumn] = useState(false)
-  const toggleOpenNewColumn = () => setOpenNewColumn(!openNewColumn)
+  const [board, setBoard] = useState({});
+  const [columns, setColumns] = useState([]);
+  const [openNewColumn, setOpenNewColumn] = useState(false);
+  const toggleOpenNewColumn = () => setOpenNewColumn(!openNewColumn);
 
-  const newColumnInputRef = useRef(null)
+  const newColumnInputRef = useRef(null);
 
-  const [newColumnTitle, setNewColumnTitle] = useState('')
-  const onNewTitleChange = (e) => setNewColumnTitle(e.target.value)
+  const [newColumnTitle, setNewColumnTitle] = useState("");
+  const onNewTitleChange = (e) => setNewColumnTitle(e.target.value);
 
   useEffect(() => {
     const boardFromDB = initialData.boards.find(
-      (board) => board.id === 'board-1'
-    )
+      (board) => board.id === "board-1"
+    );
     if (boardFromDB) {
-      setBoard(boardFromDB)
-      setColumns(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, 'id'))
+      setBoard(boardFromDB);
+      setColumns(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id"));
     }
     return () => {
-      console.log('return')
-    }
-  }, [])
+      console.log("return");
+    };
+  }, []);
 
   useEffect(() => {
     if (newColumnInputRef && newColumnInputRef.current) {
-      newColumnInputRef.current.focus()
-      newColumnInputRef.current.select()
+      newColumnInputRef.current.focus();
+      newColumnInputRef.current.select();
     }
-  }, [openNewColumn])
+  }, [openNewColumn]);
 
   if (isEmpty(board)) {
     return (
-      <div className="not-found" style={{ padding: '10px' }}>
+      <div className="not-found" style={{ padding: "10px" }}>
         Not Found
       </div>
-    )
+    );
   }
   const onColumnDrop = (dropResult) => {
-    console.log(dropResult)
-    let newColumns = [...columns]
-    newColumns = applyDrag(newColumns, dropResult)
+    console.log(dropResult);
+    let newColumns = [...columns];
+    newColumns = applyDrag(newColumns, dropResult);
 
-    let newBoard = { ...board }
-    newBoard.columnOrder = newColumns.map((c) => c.id)
-    newBoard.columns = newColumns
-    console.log(newBoard)
+    let newBoard = { ...board };
+    newBoard.columnOrder = newColumns.map((c) => c.id);
+    newBoard.columns = newColumns;
+    console.log(newBoard);
 
-    setColumns(newColumns)
-    setBoard(newBoard)
-    setNewColumnTitle('')
-  }
+    setColumns(newColumns);
+    setBoard(newBoard);
+    setNewColumnTitle("");
+  };
   const onCardDrop = (columnId, dropResult) => {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-      let newColumns = [...columns]
-      let currentColumn = newColumns.find((a) => a.id === columnId)
-      currentColumn.cards = applyDrag(currentColumn.cards, dropResult)
-      currentColumn.cardOrder = currentColumn.cards.map((i) => i.id)
-      setColumns(newColumns)
-      console.log(columnId)
-      console.log(dropResult)
+      let newColumns = [...columns];
+      let currentColumn = newColumns.find((a) => a.id === columnId);
+      currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
+      currentColumn.cardOrder = currentColumn.cards.map((i) => i.id);
+      setColumns(newColumns);
+      console.log(columnId);
+      console.log(dropResult);
     }
-  }
+  };
 
   const addNewColumn = () => {
     if (!newColumnTitle) {
-      newColumnInputRef.current.focus()
-      return
+      newColumnInputRef.current.focus();
+      return;
     }
     const newColumnAdd = {
       id: Math.random().toString(36).substr(3, 5),
@@ -86,45 +92,45 @@ function BoardCon() {
       title: newColumnTitle.trim(),
       cardOrder: [],
       cards: [],
-    }
+    };
 
-    let newColumns = [...columns]
-    newColumns.push(newColumnAdd)
+    let newColumns = [...columns];
+    newColumns.push(newColumnAdd);
 
-    let newBoard = { ...board }
-    newBoard.columnOrder = newColumns.map((c) => c.id)
-    newBoard.columns = newColumns
-    console.log(newBoard)
+    let newBoard = { ...board };
+    newBoard.columnOrder = newColumns.map((c) => c.id);
+    newBoard.columns = newColumns;
+    console.log(newBoard);
 
-    setColumns(newColumns)
-    setBoard(newBoard)
-  }
+    setColumns(newColumns);
+    setBoard(newBoard);
+  };
 
   const onUpdateColumn = (newColumnUpdate) => {
-    const columnIdToUpdate = newColumnUpdate.id
+    const columnIdToUpdate = newColumnUpdate.id;
 
-    let newColumns = [...columns]
+    let newColumns = [...columns];
     const columnIndexUpdate = newColumns.findIndex(
       (i) => i.id === columnIdToUpdate
-    )
+    );
 
     if (newColumnUpdate._destroy) {
       //remove column
-      newColumns.splice(columnIndexUpdate, 1)
+      newColumns.splice(columnIndexUpdate, 1);
     } else {
       // update column information
-      newColumns.splice(columnIndexUpdate, 1, newColumnUpdate)
+      newColumns.splice(columnIndexUpdate, 1, newColumnUpdate);
     }
 
-    let newBoard = { ...board }
-    newBoard.columnOrder = newColumns.map((c) => c.id)
-    newBoard.columns = newColumns
-    console.log(newBoard)
+    let newBoard = { ...board };
+    newBoard.columnOrder = newColumns.map((c) => c.id);
+    newBoard.columns = newColumns;
+    console.log(newBoard);
 
-    setColumns(newColumns)
-    setBoard(newBoard)
+    setColumns(newColumns);
+    setBoard(newBoard);
     // console.log(columnIndexUpdate)
-  }
+  };
 
   return (
     <div className="board-content">
@@ -136,7 +142,7 @@ function BoardCon() {
         dropPlaceholder={{
           animationDuration: 150,
           showOnTop: true,
-          className: 'column-drop-preview',
+          className: "column-drop-preview",
         }}
       >
         {columns.map((column, index) => (
@@ -169,7 +175,7 @@ function BoardCon() {
                 ref={newColumnInputRef}
                 value={newColumnTitle}
                 onChange={onNewTitleChange}
-                onKeyDown={(e) => e.key === 'Enter' && addNewColumn()}
+                onKeyDown={(e) => e.key === "Enter" && addNewColumn()}
               />
               <Button
                 className="button"
@@ -187,7 +193,7 @@ function BoardCon() {
         )}
       </TrelloApp>
     </div>
-  )
+  );
 }
 
-export default BoardCon
+export default BoardCon;

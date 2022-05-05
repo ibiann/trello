@@ -1,4 +1,4 @@
-@import '../../../settings.scss';
+@import "../../../settings.scss";
 
 .board-content {
   height: $board-content-height;
@@ -7,7 +7,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   &:after {
-    content: '';
+    content: "";
     flex: 0 0 $gap;
   }
 

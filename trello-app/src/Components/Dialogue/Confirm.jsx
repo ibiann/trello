@@ -1,10 +1,10 @@
-import React from 'react'
-import { Button, Modal } from 'react-bootstrap'
-import HTMLReactParser from 'html-react-parser'
-import { MODAL_CLOSE, MODAL_CONFIRM } from '../../utils/const'
+import React from "react";
+import { Button, Modal } from "react-bootstrap";
+import HTMLReactParser from "html-react-parser";
+import { MODAL_CLOSE, MODAL_CONFIRM } from "../../utils/const";
 
 function Confirm(props) {
-  const { title, content, show, onAction } = props
+  const { title, content, show, onAction } = props;
 
   return (
     <Modal
@@ -27,7 +27,7 @@ function Confirm(props) {
         </Button>
       </Modal.Footer>
     </Modal>
-  )
+  );
 }
 
-export default Confirm
+export default Confirm;

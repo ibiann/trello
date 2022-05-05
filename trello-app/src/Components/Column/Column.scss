@@ -1,4 +1,4 @@
-@import '../../../settings.scss';
+@import "../../../settings.scss";
 
 $list-bg-color: #ebecf0;
 $column-height: calc(#{$board-content-height} - #{$gap * 2});
@@ -57,7 +57,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
           }
 
           &:after {
-            content: '';
+            content: "";
             border: none;
           }
           &:hover {

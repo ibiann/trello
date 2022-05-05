@@ -2,74 +2,74 @@ import {
   CloseOutlined,
   PlusCircleOutlined,
   UnorderedListOutlined,
-} from '@ant-design/icons'
-import React, { useEffect, useRef, useState } from 'react'
-import { Container, Draggable } from 'react-smooth-dnd'
-import { cloneDeep } from 'lodash'
+} from "@ant-design/icons";
+import React, { useEffect, useRef, useState } from "react";
+import { Container, Draggable } from "react-smooth-dnd";
+import { cloneDeep } from "lodash";
 
-import './Column.scss'
+import "./Column.scss";
 
-import Card from '../Card/Card'
-import { mapOrder } from '../../utils/sort'
-import { MODAL_CONFIRM } from '../../utils/const'
-import Confirm from '../Dialogue/Confirm'
-import { Dropdown, Form, Button } from 'react-bootstrap'
-import { saveContentColumnTitle, selectAllText } from '../../utils/contentEdit'
+import Card from "../Card/Card";
+import { mapOrder } from "../../utils/sort";
+import { MODAL_CONFIRM } from "../../utils/const";
+import Confirm from "../Dialogue/Confirm";
+import { Dropdown, Form, Button } from "react-bootstrap";
+import { saveContentColumnTitle, selectAllText } from "../../utils/contentEdit";
 
 function Column(props) {
   // const [hide,setHide] = React.useState(false)
-  const { column, onCardDrop, onUpdateColumn } = props
-  const cards = mapOrder(column.cards, column.cardOrder, 'id')
-  const [showConfirmBox, setShowConfirmBox] = useState(false)
-  const toggleShowConfirmBox = () => setShowConfirmBox(!showConfirmBox)
-  const [columnTitle, setColumnTitle] = useState('') //string rong
+  const { column, onCardDrop, onUpdateColumn } = props;
+  const cards = mapOrder(column.cards, column.cardOrder, "id");
+  const [showConfirmBox, setShowConfirmBox] = useState(false);
+  const toggleShowConfirmBox = () => setShowConfirmBox(!showConfirmBox);
+  const [columnTitle, setColumnTitle] = useState(""); //string rong
   const handleColumnTitleChange = (e) => {
-    setColumnTitle(e.target.value, [])
-  }
-  const [openNewCard, setOpenNewCard] = useState(false)
-  const toggleOpenNewCard = () => setOpenNewCard(!openNewCard)
+    setColumnTitle(e.target.value, []);
+  };
+  const [openNewCard, setOpenNewCard] = useState(false);
+  const toggleOpenNewCard = () => setOpenNewCard(!openNewCard);
 
-  const newCardTextplaceRef = useRef(null)
+  const newCardTextplaceRef = useRef(null);
 
-  const [newCardTitle, setNewCardTitle] = useState('')
-  const onNewCardTitleChange = (e) => setNewCardTitle(e.target.value)
+  const [newCardTitle, setNewCardTitle] = useState("");
+  const onNewCardTitleChange = (e) => setNewCardTitle(e.target.value);
 
   useEffect(() => {
-    setColumnTitle(column.title)
-  }, [column.title])
+    setColumnTitle(column.title);
+  }, [column.title]);
   // column thay doi title thi effect nay se chay
   // 0 se chay vo hanF
 
   useEffect(() => {
     if (newCardTextplaceRef && newCardTextplaceRef.current) {
-      newCardTextplaceRef.current.focus()
-      newCardTextplaceRef.current.select()
+      newCardTextplaceRef.current.focus();
+      newCardTextplaceRef.current.select();
     }
-  }, [openNewCard])
+  }, [openNewCard]);
 
   const ConfirmModal = (type) => {
     if (type === MODAL_CONFIRM) {
       const newColumn = {
         ...column,
         _destroy: true,
-      }
-      onUpdateColumn(newColumn)
+      };
+      onUpdateColumn(newColumn);
     }
-    toggleShowConfirmBox()
-  }
+    toggleShowConfirmBox();
+  };
 
   const handleColumnTitleBlur = () => {
     const newColumn = {
       ...column,
       title: columnTitle,
-    }
-    onUpdateColumn(newColumn)
-  }
+    };
+    onUpdateColumn(newColumn);
+  };
 
   const addNewCard = () => {
     if (!newCardTitle) {
-      newCardTextplaceRef.current.focus()
-      return
+      newCardTextplaceRef.current.focus();
+      return;
     }
 
     const newCardAdd = {
@@ -77,18 +77,18 @@ function Column(props) {
       boardID: column.boardId,
       columnId: column.id,
       title: newCardTitle.trim(),
-      cover: null
-    }
+      cover: null,
+    };
     //console.log(column)
-    let newColum = cloneDeep(column)
-    newColum.cards.push(newCardAdd)
-    newColum.cardOrder.push(newCardAdd.id)
+    let newColum = cloneDeep(column);
+    newColum.cards.push(newCardAdd);
+    newColum.cardOrder.push(newCardAdd.id);
 
     //console.log(newColum)
-    onUpdateColumn(newColum)
-    setNewCardTitle('')
-    toggleOpenNewCard()
-  }
+    onUpdateColumn(newColum);
+    setNewCardTitle("");
+    toggleOpenNewCard();
+  };
 
   return (
     // <div className={`column ${hide ? 'hide' : ''}`} draggable={true} onDrop={() => setHide(false)} onDrag={() => setHide(true)} >
@@ -140,7 +140,7 @@ function Column(props) {
           dropPlaceholder={{
             animationDuration: 150,
             showOnTop: true,
-            className: 'card-drop-preview',
+            className: "card-drop-preview",
           }}
           dropPlaceholderAnimationDuration={200}
         >
@@ -161,7 +161,7 @@ function Column(props) {
               ref={newCardTextplaceRef}
               value={newCardTitle}
               onChange={onNewCardTitleChange}
-              onKeyDown={(e) => e.key === 'Enter' && addNewCard()}
+              onKeyDown={(e) => e.key === "Enter" && addNewCard()}
             />
           </div>
         )}
@@ -195,7 +195,7 @@ function Column(props) {
         content={`Remove ${column.title}? Remove soon`}
       />
     </div>
-  )
+  );
 }
 
-export default Column
+export default Column;

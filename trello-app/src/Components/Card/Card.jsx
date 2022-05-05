@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-import './Card.scss'
+import "./Card.scss";
 
 function Card(props) {
-  const { card } = props
+  const { card } = props;
 
   return (
     <div className="card-items">
@@ -17,7 +17,7 @@ function Card(props) {
       )}
       {card.title}
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;
