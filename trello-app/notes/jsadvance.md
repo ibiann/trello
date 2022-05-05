@@ -1,2 +1,2 @@
-focus()  Xử lý một sự kiện focus
+focus() Xử lý một sự kiện focus
 blur()
