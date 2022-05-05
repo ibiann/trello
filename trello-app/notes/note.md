@@ -33,10 +33,11 @@ setInterval()
 sử dụng để thiết lập độ trễ cho các hàm sẽ được thực hiện lặp lại như là hiệu ứng.
 
 
-
 async/await viết code bất đồng bộ, xử lý error 
 https://topdev.vn/blog/6-ly-do-asyncawait-cua-javascript-danh-bai-promises/
 
 
 spread operator 
 copy mảng
+
+React.Fragment  return nhiều element từ một component mà không làm sinh ra những DOM element
