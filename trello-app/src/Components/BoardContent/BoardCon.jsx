@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { isEmpty } from "lodash";
 import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
-
+import axios from "axios"
 import Column from "../Column/Column";
 import { mapOrder } from "../../utils/sort";
 import { applyDrag } from "../../utils/dragDrop";
@@ -27,19 +27,25 @@ function BoardCon() {
 
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const onNewTitleChange = (e) => setNewColumnTitle(e.target.value);
-
+  function getData(){
+    fetch('http://localhost:8081/boards').then(res => res.json())
+    .then(data => {
+      console.log(data)
+      const boardFromDB = data.find(
+        (board) => board.id === "board-1"
+      );
+      if (boardFromDB) {
+        setBoard(boardFromDB);
+        setColumns(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id"));
+      }
+    })
+  }
   useEffect(() => {
-    const boardFromDB = initialData.boards.find(
-      (board) => board.id === "board-1"
-    );
-    if (boardFromDB) {
-      setBoard(boardFromDB);
-      setColumns(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id"));
-    }
-    return () => {
-      console.log("return");
-    };
+    
+    getData()
   }, []);
+
+  
 
   useEffect(() => {
     if (newColumnInputRef && newColumnInputRef.current) {
@@ -64,9 +70,11 @@ function BoardCon() {
     newBoard.columnOrder = newColumns.map((c) => c.id);
     newBoard.columns = newColumns;
     console.log(newBoard);
-
+    axios.put('http://localhost:8081/boards/' + board.id, newBoard)
+    .then(res => {
+      getData()
+    }).catch(err => console.log('err : ', err))
     setColumns(newColumns);
-    setBoard(newBoard);
     setNewColumnTitle("");
   };
   const onCardDrop = (columnId, dropResult) => {
@@ -75,6 +83,20 @@ function BoardCon() {
       let currentColumn = newColumns.find((a) => a.id === columnId);
       currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
       currentColumn.cardOrder = currentColumn.cards.map((i) => i.id);
+      let newBoard = { ...board };
+      
+
+      newBoard.columns = newBoard.columns.map(item => {
+        if(item.id === currentColumn.id){
+          return currentColumn
+        }
+        return item
+      })
+      console.log('newBoard: ', newBoard)
+      axios.put('http://localhost:8081/boards/' + board.id, newBoard)
+      .then(res => {
+        getData()
+      }).catch(err => console.log('err : ', err))
       setColumns(newColumns);
       console.log(columnId);
       console.log(dropResult);
@@ -86,24 +108,33 @@ function BoardCon() {
       newColumnInputRef.current.focus();
       return;
     }
-    const newColumnAdd = {
-      id: Math.random().toString(36).substr(3, 5),
-      boardID: board.id,
-      title: newColumnTitle.trim(),
-      cardOrder: [],
-      cards: [],
-    };
-
-    let newColumns = [...columns];
-    newColumns.push(newColumnAdd);
-
-    let newBoard = { ...board };
-    newBoard.columnOrder = newColumns.map((c) => c.id);
-    newBoard.columns = newColumns;
-    console.log(newBoard);
-
-    setColumns(newColumns);
-    setBoard(newBoard);
+    let randomId = Math.random().toString(36).substr(3, 5)
+    if(board){
+      const newColumnAdd = {
+        id: randomId,
+        boardID: board.id,
+        title: newColumnTitle.trim(),
+        cardOrder: [],
+        cards: [],
+      };
+      const sevingData = {
+        ...board,
+        columns: [
+          ...board.columns,
+          newColumnAdd
+        ],
+        columnOrder: [
+          ...board.columnOrder,
+          randomId
+        ],
+      };
+      console.log(sevingData)
+      axios.put('http://localhost:8081/boards/' + board.id, sevingData)
+      .then(res => {
+        getData()
+        setNewColumnTitle("");
+      }).catch(err => console.log('err : ', err))
+    }
   };
 
   const onUpdateColumn = (newColumnUpdate) => {
@@ -126,9 +157,12 @@ function BoardCon() {
     newBoard.columnOrder = newColumns.map((c) => c.id);
     newBoard.columns = newColumns;
     console.log(newBoard);
-
+    axios.put('http://localhost:8081/boards/' + board.id, newBoard)
+    .then(res => {
+      getData()
+      setNewColumnTitle("");
+    }).catch(err => console.log('err : ', err))
     setColumns(newColumns);
-    setBoard(newBoard);
     // console.log(columnIndexUpdate)
   };
 

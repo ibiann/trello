@@ -124,3 +124,6 @@ export const initialData = {
     },
   ],
 };
+
+
+console.log(JSON.stringify(initialData))
