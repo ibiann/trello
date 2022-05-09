@@ -5,7 +5,8 @@
       "columnOrder": [
         "column-1",
         "column-2",
-        "column-3"
+        "column-3",
+        "wx382"
       ],
       "columns": [
         {
@@ -130,6 +131,13 @@
               "cover": null
             }
           ]
+        },
+        {
+          "id": "wx382",
+          "boardID": "board-1",
+          "title": "adsa",
+          "cardOrder": [],
+          "cards": []
         }
       ]
     }

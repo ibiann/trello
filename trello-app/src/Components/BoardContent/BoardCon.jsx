@@ -125,7 +125,7 @@ function BoardCon() {
       };
       console.log(sevingData);
       axios
-        .put("http://localhost:8081/boards" + board.id, sevingData)
+        .put("http://localhost:8081/boards/" + board.id, sevingData)
         .then((res) => {
           getData();
           setNewColumnTitle("");
