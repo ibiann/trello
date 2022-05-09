@@ -1,4 +1,4 @@
-import InputTitle from "../Input/Input";
+import InputTitle from "../Input/InputTitle";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { starBoard } from "../redux/boardSlice";
