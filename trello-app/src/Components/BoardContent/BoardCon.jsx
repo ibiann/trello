@@ -10,11 +10,11 @@ import {
 } from "react-bootstrap";
 import { isEmpty } from "lodash";
 import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
-import axios from "axios"
+import axios from "axios";
 import Column from "../Column/Column";
 import { mapOrder } from "../../utils/sort";
 import { applyDrag } from "../../utils/dragDrop";
-import { initialData } from "../../actions/initialData";
+// import { initialData } from "../../actions/initialData";
 import "./BoardCon.scss";
 
 function BoardCon() {
@@ -27,25 +27,23 @@ function BoardCon() {
 
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const onNewTitleChange = (e) => setNewColumnTitle(e.target.value);
-  function getData(){
-    fetch('http://localhost:8081/boards').then(res => res.json())
-    .then(data => {
-      console.log(data)
-      const boardFromDB = data.find(
-        (board) => board.id === "board-1"
-      );
-      if (boardFromDB) {
-        setBoard(boardFromDB);
-        setColumns(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id"));
-      }
-    })
+  function getData() {
+    fetch("http://localhost:8081/boards")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const boardFromDB = data.find((board) => board.id === "board-1");
+        if (boardFromDB) {
+          setBoard(boardFromDB);
+          setColumns(
+            mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id")
+          );
+        }
+      });
   }
   useEffect(() => {
-    
-    getData()
+    getData();
   }, []);
-
-  
 
   useEffect(() => {
     if (newColumnInputRef && newColumnInputRef.current) {
@@ -70,10 +68,12 @@ function BoardCon() {
     newBoard.columnOrder = newColumns.map((c) => c.id);
     newBoard.columns = newColumns;
     console.log(newBoard);
-    axios.put('http://localhost:8081/boards/' + board.id, newBoard)
-    .then(res => {
-      getData()
-    }).catch(err => console.log('err : ', err))
+    axios
+      .put("http://localhost:8081/boards" + board.id, newBoard)
+      .then((res) => {
+        getData();
+      })
+      .catch((err) => console.log("err : ", err));
     setColumns(newColumns);
     setNewColumnTitle("");
   };
@@ -84,19 +84,20 @@ function BoardCon() {
       currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
       currentColumn.cardOrder = currentColumn.cards.map((i) => i.id);
       let newBoard = { ...board };
-      
 
-      newBoard.columns = newBoard.columns.map(item => {
-        if(item.id === currentColumn.id){
-          return currentColumn
+      newBoard.columns = newBoard.columns.map((item) => {
+        if (item.id === currentColumn.id) {
+          return currentColumn;
         }
-        return item
-      })
-      console.log('newBoard: ', newBoard)
-      axios.put('http://localhost:8081/boards/' + board.id, newBoard)
-      .then(res => {
-        getData()
-      }).catch(err => console.log('err : ', err))
+        return item;
+      });
+      console.log("newBoard: ", newBoard);
+      axios
+        .put("http://localhost:8081/boards" + board.id, newBoard)
+        .then((res) => {
+          getData();
+        })
+        .catch((err) => console.log("err : ", err));
       setColumns(newColumns);
       console.log(columnId);
       console.log(dropResult);
@@ -108,8 +109,8 @@ function BoardCon() {
       newColumnInputRef.current.focus();
       return;
     }
-    let randomId = Math.random().toString(36).substr(3, 5)
-    if(board){
+    let randomId = Math.random().toString(36).substr(3, 5);
+    if (board) {
       const newColumnAdd = {
         id: randomId,
         boardID: board.id,
@@ -119,21 +120,17 @@ function BoardCon() {
       };
       const sevingData = {
         ...board,
-        columns: [
-          ...board.columns,
-          newColumnAdd
-        ],
-        columnOrder: [
-          ...board.columnOrder,
-          randomId
-        ],
+        columns: [...board.columns, newColumnAdd],
+        columnOrder: [...board.columnOrder, randomId],
       };
-      console.log(sevingData)
-      axios.put('http://localhost:8081/boards/' + board.id, sevingData)
-      .then(res => {
-        getData()
-        setNewColumnTitle("");
-      }).catch(err => console.log('err : ', err))
+      console.log(sevingData);
+      axios
+        .put("http://localhost:8081/boards" + board.id, sevingData)
+        .then((res) => {
+          getData();
+          setNewColumnTitle("");
+        })
+        .catch((err) => console.log("err : ", err));
     }
   };
 
@@ -157,11 +154,13 @@ function BoardCon() {
     newBoard.columnOrder = newColumns.map((c) => c.id);
     newBoard.columns = newColumns;
     console.log(newBoard);
-    axios.put('http://localhost:8081/boards/' + board.id, newBoard)
-    .then(res => {
-      getData()
-      setNewColumnTitle("");
-    }).catch(err => console.log('err : ', err))
+    axios
+      .put("http://localhost:8081/boards" + board.id, newBoard)
+      .then((res) => {
+        getData();
+        setNewColumnTitle("");
+      })
+      .catch((err) => console.log("err : ", err));
     setColumns(newColumns);
     // console.log(columnIndexUpdate)
   };
