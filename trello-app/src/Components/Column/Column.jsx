@@ -142,6 +142,7 @@ function Column(props) {
             showOnTop: true,
             className: "card-drop-preview",
           }}
+          nonDragAreaSelector='.card-info-container'
           dropPlaceholderAnimationDuration={200}
         >
           {cards.map((card, index) => (
