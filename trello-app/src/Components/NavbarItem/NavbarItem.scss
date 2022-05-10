@@ -24,8 +24,8 @@ $navbar-element-border-radius: 3px;
       cursor: pointer;
       background-color: $hover-bg-color;
     }
-    i {
-      font-size: $icon-down-size;
+    .navbar-icon {
+      font-size: $icon-size;
       margin-right: 8px;
       color: #333;
     }

@@ -1,30 +1,13 @@
 @import "../../_settings.scss";
 
-// .navbar-app {
-//   background-color: $navbar-app-bg-color;
-//   height: $navbar-app-height;
-//   font-size: 1.5em;
-//   display: flex;
-//   align-items: center;
-//   padding-left: $gap;
-// }
-
-
-// $appbar-bg-color: #0067a3;
-$appbar-bg-color: #e4ebf2;
-
-$icon-down-size: 12px;
-$navbar-element-height: 70%;
-
-$navbar-element-border-radius: 3px;
-
 .navbar-app {
   padding: 0 $gap;
   background-color: $appbar-bg-color;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 15px;
+  height: $navbar-app-height;
+  font-size: 1.1em;
   .navbar-left {
     display: flex;
     align-items: center;
@@ -46,7 +29,7 @@ $navbar-element-border-radius: 3px;
     display: flex;
     align-items: center;
     .navbar-search {
-      border-radius: $navbar-element-border-radius;
+      border-radius: $search-element-border-radius;
       padding: 4px 8px;
       background-color: darken($appbar-bg-color, 10);
       &:hover {
@@ -62,25 +45,54 @@ $navbar-element-border-radius: 3px;
         outline: none;
         &:focus {
           background-color: #fff;
+          border-radius: $search-element-border-radius;
         }
       }
     }
     .navbar-notify {
-      font-size: 16px;
+      font-size: 18px;
       margin: 0 16px;
       line-height: 100%;
       cursor: pointer;
       &:hover {
         color: rgb(120, 119, 119);
       }
+      .bell-icon {
+        display: flex;
+        align-items: center;
+        color: $color;
+        &:hover {
+          color: $color-2;
+        }
+      }
     }
     .navbar-user {
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      // background: url('') no-repeat center;
+      background: url("https://picsum.photos/200/200") no-repeat center;
       background-size: cover;
       cursor: pointer;
+      -webkit-transition: box-shadow 0.6s ease-out;
+      box-shadow: 0.8px 0.9px 3px grey;
+      &:hover {
+        box-shadow: 1px 8px 20px white;
+        -webkit-transition: box-shadow 0.6s ease-in;
+      }
+
+      .user-icon {
+        display: flex;
+        text-align: center;
+        padding-left: 8px;
+        padding-top: 8px;
+        background-color: transparent;
+        color: transparent;
+
+        &:hover {
+          color: $color;
+          transition: 0.4s;
+        }
+      }
     }
   }
 }

@@ -1,0 +1,129 @@
+@import "../../settings";
+
+.card-info-container {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .card-info-content {
+    display: flex;
+    background-color: #fff;
+    width: 770px;
+    height: 620px;
+    padding: 22px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px #ccc;
+    position: relative;
+    box-shadow: 1px 1px 2px $regular-color;
+    .close-card-info {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+    .card-info-edit {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      label {
+        font-size: 18px;
+        font-weight: 700;
+        .card-icon-title,
+        .card-icon-menu,
+        .card-icon-action {
+          margin-right: 12px;
+          width: 20px;
+        }
+      }
+      p,
+      textarea {
+        margin: 12px 0 42px 32px;
+      }
+      p {
+        u {
+          font-weight: 600;
+        }
+      }
+      textarea {
+        border: none;
+        outline: none;
+        height: 80px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        background-color: #e4ebf2;
+      }
+      .user-comment {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        height: 36px;
+        margin-top: 12px;
+        .user-avt {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: url('https://picsum.photos/200/300') no-repeat center;
+          background-size: cover;
+        }
+        input {
+          border: none;
+          outline: none;
+          padding: 8px 12px;
+          width: 100%;
+          border-radius: 5px;
+          margin-left: 12px;
+          background-color: rgb(235, 232, 232);
+        }
+      }
+    }
+    .card-info-nav {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      margin-top: 78px;
+      label {
+        color: $fade-text-color;
+        margin-bottom: 12px;
+        margin-top: 16px;
+      }
+      .card-info-nav-btn {
+        color: $fade-text-color;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 10px;
+        background-color: #ebecf0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        .card-icon-user,
+        .card-icon-tag,
+        .card-icon-tasks,
+        .card-icon-date,
+        .card-icon-save,
+        .card-icon-share {
+          margin-right: 12px;
+          width: 20px;
+        }
+        &:hover {
+          box-shadow: 0 0 2px #ccc;
+          background-color: darken(#ebecf0, 8);
+        }
+      }
+    }
+  }
+}

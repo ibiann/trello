@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { starBoard } from "../redux/boardSlice";
 import "./BoardBar.scss";
+import { BiPencil } from "react-icons/bi";
+import { StarFilled, StarOutlined, UserAddOutlined } from "@ant-design/icons";
 
 const BoardBar = ({ stared, currentBoard, boardTitle }) => {
   const dispatch = useDispatch();
@@ -19,10 +21,10 @@ const BoardBar = ({ stared, currentBoard, boardTitle }) => {
   };
 
   useEffect(() => {
-    if(isEditBoardTitle) {
-      editTitleInputRef.current.focus()
+    if (isEditBoardTitle) {
+      editTitleInputRef.current.focus();
     }
-  }, [isEditBoardTitle])
+  }, [isEditBoardTitle]);
 
   return (
     <nav className="navbar-board">
@@ -34,7 +36,7 @@ const BoardBar = ({ stared, currentBoard, boardTitle }) => {
         >
           <span>{boardTitle}</span>
           <div className="board-name-edit">
-            <i className="fa-solid fa-pencil"></i>
+            <BiPencil />
           </div>
         </div>
       ) : (
@@ -48,16 +50,20 @@ const BoardBar = ({ stared, currentBoard, boardTitle }) => {
       )}
       <div className="star-btn navbar-board-btn" onClick={handleStarBoard}>
         {stared ? (
-          <i className="fa-solid fa-star stared"></i>
+          <div className="item-star stared" onClick={handleStarBoard}>
+            <StarFilled className="board-item-icon-pressed" />
+          </div>
         ) : (
-          <i className="fa-regular fa-star"></i>
+          <div className="item-star" onClick={handleStarBoard}>
+            <StarOutlined className="board-item-icon" />
+          </div>
         )}
       </div>
       <div className="separator"></div>
       <div className="change-workspace navbar-board-btn">Trello Workspaces</div>
       <div className="separator"></div>
       <div className="share-btn navbar-board-btn">
-        <i className="fa-solid fa-user-plus"></i>
+        <UserAddOutlined className="user-add" />
         Share
       </div>
     </nav>

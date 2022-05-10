@@ -28,7 +28,7 @@ function BoardCon() {
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const onNewTitleChange = (e) => setNewColumnTitle(e.target.value);
   function getData() {
-    fetch("http://localhost:8081/boards")
+    fetch("http://localhost:8081/boards/")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -69,7 +69,8 @@ function BoardCon() {
     newBoard.columns = newColumns;
     console.log(newBoard);
     axios
-      .put("http://localhost:8081/boards" + board.id, newBoard)
+      .put("http://localhost:8081/boards/" + board
+      .id, newBoard)
       .then((res) => {
         getData();
       })
@@ -93,7 +94,7 @@ function BoardCon() {
       });
       console.log("newBoard: ", newBoard);
       axios
-        .put("http://localhost:8081/boards" + board.id, newBoard)
+        .put("http://localhost:8081/boards/" + board.id, newBoard)
         .then((res) => {
           getData();
         })
@@ -155,7 +156,7 @@ function BoardCon() {
     newBoard.columns = newColumns;
     console.log(newBoard);
     axios
-      .put("http://localhost:8081/boards" + board.id, newBoard)
+      .put("http://localhost:8081/boards/" + board.id, newBoard)
       .then((res) => {
         getData();
         setNewColumnTitle("");

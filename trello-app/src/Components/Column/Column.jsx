@@ -74,10 +74,10 @@ function Column(props) {
 
     const newCardAdd = {
       id: Math.random().toString(36).substr(2, 5),
-      boardID: column.boardId,
+      boardId: column.boardId,
       columnId: column.id,
       title: newCardTitle.trim(),
-      cover: null,
+      // cover: null,
     };
     //console.log(column)
     let newColum = cloneDeep(column);

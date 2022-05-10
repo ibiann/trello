@@ -48,7 +48,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
           font-weight: 600;
           letter-spacing: 1px;
           background-color: $column-color;
-          color: $color;
+          color: $menu-icon-color;
           border-color: $column-color;
 
           .menu-icon {
@@ -75,7 +75,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
           padding: 0.1rem 1rem;
           font-size: 14px;
           &:not(:last-child) {
-            border-bottom: 1px solid #ebecf0;
+            border-bottom: 1px solid rgb(238, 238, 238);
           }
         }
       }
