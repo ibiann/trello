@@ -35,8 +35,9 @@
       &:hover {
         background-color: darken($appbar-bg-color, 15);
       }
-      i {
-        margin-right: 8px;
+      .app-searching-icon {
+        font-size: 18px;
+        margin-right: 4px;
         color: $fade-text-color;
       }
       input.navbar-search-input {
@@ -45,7 +46,7 @@
         outline: none;
         &:focus {
           background-color: #fff;
-          border-radius: $search-element-border-radius;
+          border-radius: 2px;
         }
       }
     }
@@ -57,7 +58,7 @@
       &:hover {
         color: rgb(120, 119, 119);
       }
-      .bell-icon {
+      .app-notify-icon {
         display: flex;
         align-items: center;
         color: $color;
@@ -80,7 +81,7 @@
         -webkit-transition: box-shadow 0.6s ease-in;
       }
 
-      .user-icon {
+      .app-user-icon {
         display: flex;
         text-align: center;
         padding-left: 8px;

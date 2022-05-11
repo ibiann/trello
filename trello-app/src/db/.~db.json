@@ -116,6 +116,7 @@
           "title": "Done column",
           "cardOrder": [
             "card-13",
+            "card-11",
             "card-12"
           ],
           "cards": [
@@ -124,6 +125,13 @@
               "boardId": "board-1",
               "columnId": "column-3",
               "title": "Title of card 13",
+              "cover": null
+            },
+            {
+              "id": "card-11",
+              "boardId": "board-1",
+              "columnId": "column-3",
+              "title": "Title of card 11",
               "cover": null
             },
             {

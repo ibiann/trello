@@ -257,6 +257,29 @@ export const boardSlice = createSlice({
       "https://cutewallpaper.org/21/trello-backgrounds/Trello-dark-theme-style-overrides-%CB%87-GitHub.jpg",
       "https://cutewallpaper.org/21/trello-backgrounds/Trello-Backgrounds-14-best-free-sea-rock-cloud-and-blue-.jpg",
     ],
+
+    recentboard: [{
+        "description": "Lady with a red umbrella",
+        "image-url": "https://i.imgur.com/pwpWaWu.jpg"
+      },
+      {
+        "description": "Flowers and some fruits",
+        "image-url": "https://i.imgur.com/KIPtISY.jpg"
+      },
+      {
+        "description": "Beautiful scenery",
+        "image-url": "https://i.imgur.com/2jMCqQ2.jpg"
+      },
+      {
+        "description": "Some kind of bird",
+        "image-url": "https://i.imgur.com/QFDRuAh.jpg"
+      },
+      {
+        "description": "The attack of dragons",
+        "image-url": "https://i.imgur.com/8yIIokW.jpg"
+      }
+
+    ],
     currentBoard: "board-1",
   },
   reducers: {

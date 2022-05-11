@@ -1,11 +1,14 @@
-import { CheckOutlined } from "@ant-design/icons";
+import { DingtalkOutlined } from "@ant-design/icons";
+import { BsCheckCircle } from "react-icons/bs";
 import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createBoard, changeBoard } from "../redux/boardSlice";
 import "./CreateBoard.scss";
+import logo from '../imgs/recent-board.svg'
 
 const CreateBoard = ({ isCreateBoard, setIsCreateBoard }) => {
   const backgroundList = useSelector((state) => state.board.backgrounds);
+  // const recentBoardList = useSelector((state) => state.board.recentboard);
   const numBoardInDB = useSelector((state) => state.board.boards).length;
   const [boardName, setBoardName] = useState("");
   const [boardDescription, setBoardDescription] = useState("");
@@ -46,6 +49,9 @@ const CreateBoard = ({ isCreateBoard, setIsCreateBoard }) => {
         &times;
       </div>
       <div className="create-board-title"> Create Board </div>
+      <div className="board-present">
+        <img src= {logo} alt="" />
+      </div>
       <label>Background </label>
       <ul className="background-list">
         {backgroundList.map((background, index) => (
@@ -57,7 +63,7 @@ const CreateBoard = ({ isCreateBoard, setIsCreateBoard }) => {
             <img src={background} alt="" />
             {boardBackground === background && (
               <div className="background-item-selected">
-                <CheckOutlined />
+                <BsCheckCircle className="item-choose-icon" />
               </div>
             )}
           </li>
@@ -88,14 +94,19 @@ const CreateBoard = ({ isCreateBoard, setIsCreateBoard }) => {
 
       <label>Trello Workspaces </label>
       <select className="create-board-workspace">
+        <option value="Choosing">Choosing...</option>
         <option value="private">Private</option>
         <option value="public">Public</option>
       </select>
       <div className="create-board-note">
-        To have unlimited boards, please upgrade to Pro User.
+        <DingtalkOutlined className="board-title-icon" />
+        Start free trial
       </div>
       <button className="create-board-submit" onClick={handleCreateBoard}>
         Create
+      </button>
+      <button className="create-board-with-temp" onClick={handleCreateBoard}>
+        Start with a new template
       </button>
     </div>
   );

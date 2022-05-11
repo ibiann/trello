@@ -96,6 +96,9 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
       &:hover {
         color: rgb(125, 254, 227);
       }
+      .icon {
+        align-items: center;
+      }
     }
   }
 

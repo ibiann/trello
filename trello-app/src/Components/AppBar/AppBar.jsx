@@ -4,8 +4,8 @@ import "./AppBar.scss";
 
 import NavbarItem from "../NavbarItem/NavbarItem";
 import DropdownList from "../DropdownList/DropdownList";
-import logo from "../imgs/Trello_logo.svg";
-import { BellOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import logo from "../imgs/logo.png";
+import { BellOutlined, PlusCircleOutlined, SearchOutlined } from "@ant-design/icons";
 
 function AppBar() {
   const [isOpenDropList, setIsOpenDropList] = useState(false);
@@ -55,7 +55,7 @@ function AppBar() {
       </nav>
       <nav className="navbar-right">
         <div className="navbar-search">
-        <i className="fa fa-search" aria-hidden="true"></i>
+        <SearchOutlined className="app-searching-icon"/>
           <input
             type="text"
             className="navbar-search-input"
@@ -63,10 +63,10 @@ function AppBar() {
           />
         </div>
         <div className="navbar-notify">
-        <BellOutlined className="bell-icon"/>
+        <BellOutlined className="app-notify-icon"/>
         </div>
         <div className="navbar-user">
-        <PlusCircleOutlined className="user-icon" />
+        <PlusCircleOutlined className="app-user-icon" />
         </div>
       </nav>
     </nav>

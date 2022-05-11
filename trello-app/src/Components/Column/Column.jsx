@@ -12,7 +12,7 @@ import "./Column.scss";
 import Card from "../Card/Card";
 import { mapOrder } from "../../utils/sort";
 import { MODAL_CONFIRM } from "../../utils/const";
-import Confirm from "../Dialogue/Confirm";
+import Confirm from "../Dialogue/Remove";
 import { Dropdown, Form, Button } from "react-bootstrap";
 import { saveContentColumnTitle, selectAllText } from "../../utils/contentEdit";
 
@@ -120,11 +120,11 @@ function Column(props) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item>Action</Dropdown.Item>
+              {/* <Dropdown.Item>Action</Dropdown.Item> */}
               <Dropdown.Item onClick={toggleShowConfirmBox}>
-                Another action
+                Remove Column
               </Dropdown.Item>
-              <Dropdown.Item>Something else</Dropdown.Item>
+              {/* <Dropdown.Item>Something else</Dropdown.Item> */}
             </Dropdown.Menu>
           </Dropdown>
         </div>
@@ -142,7 +142,7 @@ function Column(props) {
             showOnTop: true,
             className: "card-drop-preview",
           }}
-          nonDragAreaSelector='.card-info-container'
+          nonDragAreaSelector=".card-info-container"
           dropPlaceholderAnimationDuration={200}
         >
           {cards.map((card, index) => (
@@ -185,15 +185,16 @@ function Column(props) {
         )}
         {!openNewCard && (
           <div className="footer-action" onClick={toggleOpenNewCard}>
-            <PlusCircleOutlined className="icon" /> Add another card
+            <PlusCircleOutlined className="icon" />{" "}
+            <span>Add another card</span>
           </div>
         )}
       </footer>
       <Confirm
         show={showConfirmBox}
         onAction={ConfirmModal}
-        title="remove column"
-        content={`Remove ${column.title}? Remove soon`}
+        title="Remove ???"
+        content={`Remove ${column.title}? Bruh just remove it. BRUH BRUH`}
       />
     </div>
   );
