@@ -1,31 +1,20 @@
 import "./Input.scss";
 import { useState, forwardRef } from "react";
 import { useDispatch } from "react-redux"
-import { editColumnTitle, editCardTitle, editBoardName } from "../redux/boardSlice"
+import { editCardTitle, editBoardName } from "../redux/boardSlice"
 
-const InputTitle = ({ type, data, setEdit, columnPost, currentBoard, columnId, cardPost }, ref) => {
+const InputTitle = ({ type, data, setEdit, currentBoard, columnId, cardIndex }, ref) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState(data)
-  const handleSaveTitle = () => {
-    if(type === "Column") {
-      setEdit(false)
-      if(title) {
-        const columnInfo = {
-            title,
-            columnPost,
-            boardId: currentBoard
-        }
-        dispatch(editColumnTitle(columnInfo))
-      }
-    }
+  const handleSaveTitle = () => {    
     if(type === 'Card') {
       setEdit(false)
       if(title) {
         const cardInfo = {
           title,
-          cardPost,
           boardId: currentBoard,
-          columnId
+          columnId: columnId,
+          cardPost: cardIndex
         }
         console.log(title);
         dispatch(editCardTitle(cardInfo))

@@ -147,7 +147,7 @@ function Column(props) {
         >
           {cards.map((card, index) => (
             <Draggable key={index}>
-              <Card card={card} />
+              <Card card={card} cardIndex={index} />
             </Draggable>
           ))}
         </Container>

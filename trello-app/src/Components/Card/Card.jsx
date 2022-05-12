@@ -35,6 +35,7 @@ const Card = (props) => {
         </>
       ) : (
         <InputTitle
+          cardIndex={props.cardIndex}
           type="Card"
           ref={editCardRef}
           data={title}

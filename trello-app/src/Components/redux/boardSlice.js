@@ -1,5 +1,5 @@
 import {
-  createSlice
+  createSlice, current
 } from "@reduxjs/toolkit";
 
 export const boardSlice = createSlice({
@@ -283,38 +283,7 @@ export const boardSlice = createSlice({
     currentBoard: "board-1",
   },
   reducers: {
-    createBoard: (state, action) => {
-      state.boards = [...state.boards, action.payload];
-    },
-    createColumn: (state, action) => {
-      const currBoard = state.boards.find(
-        (board) => board.id === action.payload.boardId
-      );
-      const idx = state.boards.indexOf(currBoard);
-      state.boards[idx].columns = [
-        ...state.boards[idx].columns,
-        action.payload,
-      ];
-    },
-    addCard: (state, action) => {
-      const currBoard = state.boards.find(
-        (board) => board.id === action.payload.boardId
-      );
-      const idxBoard = state.boards.indexOf(currBoard);
-      const currColumn = state.boards[idxBoard].columns.find(
-        (column) => column.id === action.payload.columnId
-      );
-      const idxColumns = state.boards[idxBoard].columns.indexOf(currColumn);
-      state.boards[idxBoard].columns[idxColumns].cards = [
-        ...state.boards[idxBoard].columns[idxColumns].cards,
-        {
-          ...action.payload,
-          id: `card-${
-            state.boards[idxBoard].columns[idxColumns].cards.length + 1
-          }`,
-        },
-      ];
-    },
+
     editBoardName: (state, action) => {
       const currBoard = state.boards.find(
         (board) => board.id === action.payload.boardId
@@ -331,25 +300,23 @@ export const boardSlice = createSlice({
         action.payload.title;
     },
     editCardTitle: (state, action) => {
-      const currBoard = state.boards.find(
+      const currBoard = current(state).boards.find(
         (board) => board.id === action.payload.boardId
       );
-      const idxBoard = state.boards.indexOf(currBoard);
-      const currColumn = state.boards[idxBoard].columns.find(
+
+      const idxBoard = current(state).boards.indexOf(currBoard);
+      const currColumn = current(state).boards[idxBoard].columns.find(
         (column) => column.id === action.payload.columnId
       );
-      const idxColumns = state.boards[idxBoard].columns.indexOf(currColumn);
+
+
+      const idxColumns = current(state).boards[idxBoard].columns.indexOf(currColumn);
+      
       state.boards[idxBoard].columns[idxColumns].cards[
         action.payload.cardPost
       ].title = action.payload.title;
     },
-    starBoard: (state, action) => {
-      const currBoard = state.boards.find(
-        (board) => board.id === action.payload.boardId
-      );
-      const idx = state.boards.indexOf(currBoard);
-      state.boards[idx].stared = action.payload.stared;
-    },
+
     changeBoard: (state, action) => {
       state.currentBoard = action.payload.boardId;
     },

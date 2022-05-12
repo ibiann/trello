@@ -14,6 +14,7 @@ import axios from "axios";
 import Column from "../Column/Column";
 import { mapOrder } from "../../utils/sort";
 import { applyDrag } from "../../utils/dragDrop";
+import { useSelector } from 'react-redux';
 // import { initialData } from "../../actions/initialData";
 import "./BoardCon.scss";
 
@@ -22,11 +23,22 @@ function BoardCon() {
   const [columns, setColumns] = useState([]);
   const [openNewColumn, setOpenNewColumn] = useState(false);
   const toggleOpenNewColumn = () => setOpenNewColumn(!openNewColumn);
-
+  const _boards = useSelector(state => state.board.boards);
+  console.log(_boards)
   const newColumnInputRef = useRef(null);
 
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const onNewTitleChange = (e) => setNewColumnTitle(e.target.value);
+  // useEffect(() => {
+  //   const boardFromDB = _boards.find((board) => board.id === "board-1");
+  //   console.log({x: boardFromDB.columns, y: boardFromDB.columnOrder})
+  //   setBoard(boardFromDB)
+  //   console.log(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id"))
+  //   setColumns(
+  //     mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id")
+  //   );
+  // }, [_boards])
+
   function getData() {
     fetch("http://localhost:8081/boards/")
       .then((res) => res.json())
@@ -41,9 +53,10 @@ function BoardCon() {
         }
       });
   }
+
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
 
   useEffect(() => {
     if (newColumnInputRef && newColumnInputRef.current) {
