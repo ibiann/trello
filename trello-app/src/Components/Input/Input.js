@@ -1,7 +1,7 @@
 import { useState, forwardRef } from "react";
 import "./Input.scss";
 
-const Input = ({ setIsAddCard, type, setIsAddColumn, currentBoard, numColumns, columnPost }, ref) => {
+const Input = ({ type, currentBoard }, ref) => {
   const [title, setTitle] = useState("");
   
   const handleSubmit = (e) => {
