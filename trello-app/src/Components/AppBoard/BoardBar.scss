@@ -1,8 +1,8 @@
-@import '../../../settings.scss';
+@import "../../../settings.scss";
 
 .navbar-board {
   height: $navbar-board-height;
-  background-color: rgb(241, 231, 254);
+  background-color: $board-bg-color;
   display: flex;
   align-items: center;
   padding-left: $gap;

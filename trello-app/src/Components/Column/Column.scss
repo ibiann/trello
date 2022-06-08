@@ -1,4 +1,4 @@
-@import '../../../settings.scss';
+@import "../../../settings.scss";
 
 $list-bg-color: #ebecf0;
 $column-height: calc(#{$board-content-height} - #{$gap * 2});
@@ -23,7 +23,8 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
   }
 
   header.column-drag-handle {
-    padding-left: 15px;
+    display: flex;
+    padding: 2px 8px;
     line-height: $column-header-height;
     height: $column-header-height;
     font-size: 16px;
@@ -32,15 +33,58 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
     border-top-right-radius: 5px;
     cursor: pointer;
 
-    .column-menu {
-      position: relative;
-      display: flex;
-      align-items: center;
+    .column-title {
+      flex: 90%;
+    }
+
+    .column-dropdown {
+      flex: 10%;
+      .dropdown {
+        button.dropdown-btn {
+          padding: 0 $gap;
+          font-size: 16px;
+          height: 32px;
+          margin-top: -9px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          background-color: $column-color;
+          color: $color;
+          border-color: $column-color;
+
+          .menu-icon {
+            text-align: center;
+            margin-bottom: 6px;
+          }
+
+          &:after {
+            content: "";
+            border: none;
+          }
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.247);
+            color: rgba(0, 0, 0, 0.733);
+          }
+        }
+      }
+
+      .dropdown-menu {
+        padding: 0;
+        min-width: 210px;
+        margin: 1px;
+        a.dropdown-item {
+          padding: 0.1rem 1rem;
+          font-size: 14px;
+          &:not(:last-child) {
+            border-bottom: 1px solid #ebecf0;
+          }
+        }
+      }
     }
   }
   footer {
     padding-left: 10px;
     line-height: 45px;
+    min-height: $gap;
     height: 45px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -88,6 +132,13 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
       background-color: rgba(150, 150, 200, 0.1);
       border: 1px dashed rgb(189, 195, 199);
       margin: 5px;
+    }
+
+    .add-new-card {
+      .input-enter-new-card {
+        min-height: 54px;
+        max-height: 162px;
+      }
     }
   }
 }

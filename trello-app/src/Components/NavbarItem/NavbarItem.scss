@@ -1,0 +1,33 @@
+@import "../../../settings";
+
+$navbar-btn-bg-color: rgba(0, 0, 0, 0.1);
+
+$icon-down-size: 12px;
+$navbar-element-height: 70%;
+$navbar-element-border-radius: 3px;
+
+.navbar-item-wrap {
+  margin-left: $gap;
+  position: relative;
+  height: $navbar-element-height;
+  .navbar-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: $navbar-element-border-radius;
+    &.navbar-btn {
+      background-color: $navbar-btn-bg-color;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: $hover-bg-color;
+    }
+    i {
+      font-size: $icon-down-size;
+      margin-right: 8px;
+      color: #333;
+    }
+  }
+}

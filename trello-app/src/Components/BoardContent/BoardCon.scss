@@ -1,4 +1,4 @@
-@import '../../../settings.scss';
+@import "../../../settings.scss";
 
 .board-content {
   height: $board-content-height;
@@ -7,7 +7,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   &:after {
-    content: '';
+    content: "";
     flex: 0 0 $gap;
   }
 
@@ -56,17 +56,6 @@
 
     input.input-enter-new-column {
       margin: 5px 0;
-    }
-  }
-  span.cancel-new-column {
-    margin-left: $gap;
-    cursor: pointer;
-  }
-  .cancel-new-column {
-    font-size: 18px;
-    color: #6b778c;
-    &:hover {
-      color: rgba(242, 38, 19, 1);
     }
   }
 }

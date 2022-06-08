@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap");
 $column-header-height: 36px;
 $column-footer-height: 36px;
 $column-border-radius: 5px;
@@ -13,12 +13,20 @@ $board-content-height: 88vh;
 
 //Colors
 $board-bg-color: rgb(132, 140, 207);
+$border-color: rgb(132, 140, 207);
 $navbar-board-bg-color: rgb(36, 37, 42);
 $list-bg-color: rgb(238, 238, 238);
 $navbar-app-bg-color: rgb(191, 191, 191);
 $color: rgb(191, 191, 191);
 $color-2: rgb(236, 236, 236);
 $items-bg-color: #ffff;
+$column-color: #ebecf0;
+
+$regular-color: rgb(132, 140, 207);
+$board-bg-color: rgb(132, 140, 207);
+$common-element-bg-color: rgba(55, 255, 255, 0.24);
+$hover-bg-color: rgba(0, 0, 0, 0.24);
+$fade-text-color: #5E6C84;
 
 //Frame
 
