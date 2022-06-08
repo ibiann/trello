@@ -79,6 +79,7 @@ export const boardSlice = createSlice({
                 columnId: "column-2",
                 title: "Title of card 8",
                 cover: null,
+                
               },
               {
                 id: "card-9",

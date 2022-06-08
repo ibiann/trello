@@ -132,8 +132,8 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
     }
 
     .card-drop-preview {
-      background-color: rgba(150, 150, 200, 0.1);
-      border: 1px dashed rgb(189, 195, 199);
+      // background-color: rgba(150, 150, 200, 0.1);
+      // border: 1px dashed rgb(189, 195, 199);
       margin: 5px;
     }
 

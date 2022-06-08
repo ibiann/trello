@@ -3,9 +3,8 @@ import ReactDOM from "react-dom/client";
 import "antd/dist/antd.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import store from './Components/redux/store'
+import store from './components/redux/store'
 import { Provider } from "react-redux"
-import "font-awesome/css/font-awesome.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

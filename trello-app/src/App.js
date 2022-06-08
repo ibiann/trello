@@ -1,8 +1,8 @@
 import "./App.scss";
 import React from "react";
-import BoardBar from "./Components/AppBoard/BoardBar";
-import AppBar from "./Components/AppBar/AppBar";
-import BoardCon from "./Components/BoardContent/BoardCon";
+import BoardBar from "./components/AppBoard/BoardBar";
+import AppBar from "./components/AppBar/AppBar";
+import BoardCon from "./components/BoardContent/BoardCon";
 // import { Button } from 'antd'
 
 function App() {
