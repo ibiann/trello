@@ -1,64 +1,61 @@
-@import '../../../settings.scss';
+@import "../../../settings.scss";
 
 .board-content {
-    height: $board-content-height;
-    display: flex;
-    // margin: 0 10px 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    &:after {
-        content: '';
-        flex: 0 0 $gap;
-    }
-    
-    &::-webkit-scrollbar {
-        -webkit-apperance: none;
+  height: $board-content-height;
+  display: flex;
+  // margin: 0 10px 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  &:after {
+    content: "";
+    flex: 0 0 $gap;
+  }
 
-    }
-    &::-webkit-scrollbar:horizontal {
-        height: 9px;
-    }
+  &::-webkit-scrollbar {
+    -webkit-apperance: none;
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: 9px;
+  }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.24);
-        border-right: 5px solid $color;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.24);
+    border-right: 5px solid $color;
+  }
 
-    .column-drop-preview {
-        background-color: rgba(150, 150, 200, 0.1);
-        border: 1px dashed rgb(108, 122, 137);
-        margin: 5px 45px 5px 5px;
-    }
+  .column-drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed rgb(108, 122, 137);
+    margin: 5px 45px 5px 5px;
+  }
 
-    .add-new-column {
-        width: 250px;
-        max-width: 250px;
-        line-height: 32px;
-        padding: 6px 0 4px 15px;
-        margin-left: $gap;
-        font-size: 15px;
-        color: $color-2;
-        background-color: hsla(0, 0%, 100%, 0.24);
-        cursor: pointer;
-        border-radius: $column-border-radius;
+  .add-new-column {
+    width: 250px;
+    max-width: 250px;
+    line-height: 32px;
+    padding: 6px 0 4px 15px;
+    margin-left: $gap;
+    font-size: 15px;
+    color: $color-2;
+    background-color: hsla(0, 0%, 100%, 0.24);
+    cursor: pointer;
+    border-radius: $column-border-radius;
 
-        &:hover {
-            background-color: hsla(0, 0%, 100%, 0.34);
-        }
-        
+    &:hover {
+      background-color: hsla(0, 0%, 100%, 0.34);
     }
-    .enter-new-column {
-        width: 250px;
-        max-width: 250px;
-        background-color: #ebecf0;
-        line-height: 32px;
-        padding: 4px 11px;
-        margin-left: $gap;
-        border-radius: $column-border-radius;
-        
-        input.input-enter-new-column {
-            margin: 5px 0;
-        }
-    }
+  }
+  .enter-new-column {
+    width: 250px;
+    max-width: 250px;
+    background-color: #ebecf0;
+    line-height: 32px;
+    padding: 4px 11px;
+    margin-left: $gap;
+    border-radius: $column-border-radius;
 
- }
+    input.input-enter-new-column {
+      margin: 5px 0;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+@import "_setting.scss";
+
+$icon-down-size: 12px;
+$navbar-element-height: 70%;
+$navbar-element-border-radius: 3px;
+
+.navbar-board {
+  padding-top: 4px;
+  padding-left: $gap;
+  display: flex;
+  align-items: center;
+  // background-color: $board-bg-color;
+  font-size: 1.1rem;
+  background-color: transparent;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+  .board-name {
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .board-name-edit {
+      font-size: 12px;
+      margin: 0 8px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: none;
+      &:hover {
+        color: #ccc;
+      }
+    }
+    &:hover {
+      .board-name-edit {
+        display: flex;
+      }
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+  .navbar-board-btn {
+    height: $navbar-element-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding: 0 8px;
+    border-radius: $navbar-element-border-radius;
+    background-color: #ebecf0;
+    &:hover {
+      cursor: pointer;
+      background-color: darken(#ebecf0, 10);
+    }
+  }
+  .star-btn {
+    margin: 0 0 0 16px;
+    .stared {
+      color: gold;
+    }
+    &:hover {
+      i {
+        color: gold;
+      }
+    }
+  }
+  .separator {
+    background-color: #ebecf0;
+    width: 2px;
+    height: 60%;
+    margin: 0 8px;
+  }
+  .change-workspace {
+    font-size: 1rem;
+  }
+  .share-btn {
+    color: #ebecf0;
+    background-color: $regular-color;
+    font-size: 15px;
+    i {
+      margin-right: 4px;
+      width: 20px;
+      font-size: 13px;
+    }
+    &:hover {
+      opacity: 0.9;
+      background-color: $regular-color;
+    }
+  }
+}
