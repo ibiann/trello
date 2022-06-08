@@ -1,11 +1,17 @@
-@import "../../../settings";
+@import "../../settings";
 
 $card-border-radius: 4px;
 
-.card-items {
+$list-bg-color: rgba(235, 236, 240, 0.8);
+
+.card-item {
   background-color: $items-bg-color;
   padding: $gap;
-  border-radius: 5px;
+  font-size: 14px;
+  border-radius: $card-border-radius;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
+
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -13,11 +19,50 @@ $card-border-radius: 4px;
   cursor: pointer;
   margin-bottom: $gap;
 
+  p {
+    margin: 0;
+  }
+
   img {
     max-width: 100%;
     width: 300px;
     height: 200px;
     margin: 0 auto;
     border-radius: $card-border-radius;
+  }
+
+  .card-edit {
+    font-size: 12px;
+    position: absolute;
+    top: 8px;
+    right: $gap;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $card-border-radius;
+    display: none;
+    background-color: $list-bg-color;
+    &:hover {
+      background-color: darken($list-bg-color, 8);
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: $gap;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #ccc;
+    .card-edit {
+      display: flex;
+    }
+  }
+  img.card-cover {
+    display: block;
+    width: calc(100% + 2 * 10px);
+    margin: -2px 0px 3px 0px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
   }
 }

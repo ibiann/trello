@@ -3,6 +3,9 @@ import { forwardRef } from "react";
 import "./NavbarItem.scss";
 
 import CreateBoard from "../CreateBoard/CreateBoard";
+import { StarOutlined, TableOutlined } from "@ant-design/icons";
+import { BsClock } from 'react-icons/bs'
+import { VscWand } from 'react-icons/vsc'
 const NavbarItem = ({ title, type, setNavbarItemName, isOpenDropList, setIsOpenDropList, isCreateBoard, setIsCreateBoard }, ref) => {
   
   const handleClickNavbarItem = () => {
@@ -17,11 +20,11 @@ const NavbarItem = ({ title, type, setNavbarItemName, isOpenDropList, setIsOpenD
     <div className="navbar-item-wrap" ref={ref}>
       {type === "normal" && (
         <div className="navbar-item" onClick={handleClickNavbarItem}>
-          {title === 'Boards' && <i className="fa-solid fa-table-columns"></i>}
-          {title === 'Recent Boards' && <i className="fa-solid fa-clock-rotate-left"></i>}
-          {title === 'Stared Boards' && <i className="fa-solid fa-ranking-star"></i>}
+          {title === 'Boards' && <TableOutlined className="navbar-icon"/>}
+          {title === 'Recent Boards' && <BsClock className="navbar-icon"/> }
+          {title === 'Stared Boards' && <StarOutlined className="navbar-icon"/>}
           {title}
-          {/* <i className="fa-solid fa-chevron-down"></i> */}
+          {/* <DownOutlined className="dropdown-list-icons" /> */}
         </div>
       )}
       {/* {isOpenDropList && !isCreateBoard && (
@@ -35,7 +38,7 @@ const NavbarItem = ({ title, type, setNavbarItemName, isOpenDropList, setIsOpenD
       {type === "button" && (
         <>
           <div className="navbar-item navbar-btn" onClick={handleClickCreateBoard}>
-            <i className="fa-solid fa-wand-magic-sparkles"></i>
+            <VscWand className="item-icon-button"/>
             Create Board
           </div>
           {isCreateBoard && !isOpenDropList && (

@@ -2,13 +2,15 @@
 $column-header-height: 36px;
 $column-footer-height: 36px;
 $column-border-radius: 5px;
-$card-border-radius: 4px;
+$card-border-radius: 5px;
+$navbar-element-border-radius: 5px;
+$search-element-border-radius: 5px;
 
 $gap: 10px;
 
 //app bar + board bar + boardContent + 100vh
-$navbar-app-height: 4vh;
-$navbar-board-height: 6vh;
+$navbar-app-height: 4.4vh;
+$navbar-board-height: 4.4vh;
 $board-content-height: 88vh;
 
 //Colors
@@ -17,16 +19,22 @@ $border-color: rgb(132, 140, 207);
 $navbar-board-bg-color: rgb(36, 37, 42);
 $list-bg-color: rgb(238, 238, 238);
 $navbar-app-bg-color: rgb(191, 191, 191);
-$color: rgb(191, 191, 191);
-$color-2: rgb(236, 236, 236);
+$color: rgba(236, 240, 241, 1);
+$color-2: rgba(236, 236, 236, 0.5);
+$color-3: rgb(191, 191, 191);
+$color-4: rgb(219, 10, 91);
+$color-5: rgb(236, 240, 241);
+$menu-icon-color: rgb(171, 183, 183);
 $items-bg-color: #ffff;
 $column-color: #ebecf0;
+$appbar-bg-color: rgb(82, 78, 183);
 
-$regular-color: rgb(132, 140, 207);
+
+$regular-color: rgb(50, 50, 120);
 $board-bg-color: rgb(132, 140, 207);
 $common-element-bg-color: rgba(55, 255, 255, 0.24);
 $hover-bg-color: rgba(0, 0, 0, 0.24);
-$fade-text-color: #5E6C84;
+$fade-text-color: #5e6c84;
 
 //Frame
 
@@ -34,3 +42,9 @@ $screen-lg: 1261px;
 $screen-md: 992px;
 $screen-sm: 768px;
 $screnn-iphone: 488px;
+
+//height
+$navbar-element-height: 70%;
+
+//icon
+$icon-size: 16px;

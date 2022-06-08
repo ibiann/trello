@@ -1,0 +1,89 @@
+@import "../../settings";
+
+$colum-border-radius: 5px;
+$column-header-height: 40px;
+$list-bg-color: rgba(235, 236, 240, 0.8);
+
+.edit-card {
+  padding: 12px $gap $gap;
+  border-bottom-left-radius: $colum-border-radius;
+  border-bottom-right-radius: $colum-border-radius;
+  input {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 2px #ccc;
+    padding: 8px 12px;
+    width: 100%;
+    border-radius: 3px;
+    &:focus {
+      box-shadow: 0 0 2px 2px $regular-color;
+    }
+  }
+  .edit-card-btn {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+    button {
+      color: white;
+      background-color: $regular-color;
+      border: none;
+      border-radius: 3px;
+      min-width: 80px;
+      padding: 4px 12px;
+      margin-right: 12px;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($regular-color, 10);
+      }
+    }
+    .edit-close {
+      font-size: 24px;
+      color: $fade-text-color;
+      cursor: pointer;
+      &:hover {
+        color: darken($fade-text-color, 10);
+      }
+    }
+  }
+}
+
+.input-title {
+  padding-left: $gap;
+  height: $column-header-height;
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-top-left-radius: $colum-border-radius;
+  border-top-right-radius: $colum-border-radius;
+  &.boardName {
+    width: 250px;
+  }
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 2px 8px;
+    box-shadow: 0 0 2px #ccc;
+    border-radius: 3px;
+    &:focus {
+      box-shadow: 0 0 2px 2px $regular-color;
+    }
+  }
+  button.save-title-btn {
+    color: white;
+    background-color: $regular-color;
+    border: none;
+    border-radius: 3px;
+    min-width: 40px;
+    padding: 2px 8px;
+    margin-left: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      background-color: darken($regular-color, 10);
+    }
+  }
+}

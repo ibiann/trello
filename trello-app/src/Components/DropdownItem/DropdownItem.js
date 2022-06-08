@@ -1,6 +1,7 @@
 import './DropdownItem.scss'
 import { useDispatch } from 'react-redux'
 import { starBoard, changeBoard } from '../redux/boardSlice'
+import { StarOutlined, StarFilled } from "@ant-design/icons";
 
 const DropdownItem = ({ boardName, boardDesc, boardBg, isStared, boardId, setIsBoardsListChanged, setIsOpenDropList }) => {
     const dispatch = useDispatch()
@@ -26,11 +27,11 @@ const DropdownItem = ({ boardName, boardDesc, boardBg, isStared, boardId, setIsB
             </div>
             {isStared ? (
                 <div className="item-star stared" onClick={handleStarBoard}>
-                    <i className="fa-solid fa-star"></i>
+                    <StarFilled  className="board-item-icon-pressed" />
                 </div>
             ) : (
                 <div className="item-star" onClick={handleStarBoard}>
-                    <i className="fa-regular fa-star"></i>
+                    <StarOutlined className="board-item-icon" />
                 </div>
             )}
         </li>
